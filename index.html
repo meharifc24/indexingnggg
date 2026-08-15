@@ -1,10 +1,11 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Kyojuro Rengoku — HIM</title>
+    <title>Rengoku | The Flame Hashira</title>
 
     <style>
         * {
@@ -19,420 +20,1362 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            color: white;
+            color: #fff;
             background:
-                radial-gradient(circle at 50% 20%, #ff9d00 0%, #7a1600 25%, #180000 65%, #050505 100%);
-            min-height: 100vh;
+                radial-gradient(circle at 50% 0%, #681d05 0%, #210603 35%, #090202 75%);
             overflow-x: hidden;
         }
 
-        /* Animated flames */
-        body::before {
-            content: "";
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
             position: fixed;
-            inset: 0;
-            pointer-events: none;
-            opacity: 0.25;
-            background:
-                radial-gradient(circle at 10% 90%, #ff4d00 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, #ff8c00 0%, transparent 20%),
-                radial-gradient(circle at 50% 100%, #ff0000 0%, transparent 25%);
-            animation: flames 3s infinite alternate;
-        }
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
 
-        @keyframes flames {
-            from {
-                transform: scale(1);
-            }
-
-            to {
-                transform: scale(1.12);
-            }
-        }
-
-        header {
-            min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            text-align: center;
-            padding: 40px 20px;
+
+            padding: 16px 6%;
+
+            background: rgba(8, 2, 1, 0.88);
+            backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid rgba(255, 100, 0, 0.25);
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: #ffb52e;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+        }
+
+        nav a {
+            color: #eee;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: 0.25s;
+        }
+
+        nav a:hover {
+            color: #ff9d00;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 82vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 120px 7% 70px;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+            width: 500px;
+            height: 500px;
+
+            background: #ff4500;
+            filter: blur(180px);
+            opacity: 0.18;
+
+            right: -150px;
+            bottom: -150px;
+        }
+
+        .hero-content {
+            max-width: 1150px;
+            width: 100%;
+
+            display: grid;
+            grid-template-columns: 1fr 0.9fr;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .eyebrow {
+            color: #ffb52e;
+            font-size: 0.9rem;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: clamp(4rem, 8vw, 7rem);
+            line-height: 0.9;
+            letter-spacing: 5px;
+
+            color: white;
+
+            text-shadow:
+                0 0 15px #ff7200,
+                0 0 35px rgba(255, 69, 0, 0.7);
+        }
+
+        .hero h1 span {
+            color: #ff9d00;
+        }
+
+        .hero-description {
+            max-width: 620px;
+
+            margin-top: 25px;
+
+            font-size: 1.1rem;
+            line-height: 1.8;
+
+            color: #e5d4c5;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            text-decoration: none;
+
+            padding: 13px 22px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            transition: 0.25s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff9d00, #ff4d00);
+            color: white;
+
+            box-shadow: 0 0 20px rgba(255, 69, 0, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(255, 100, 0, 0.65);
+        }
+
+        .btn-secondary {
+            border: 1px solid #9b3b13;
+            color: #ffd18a;
+            background: rgba(255, 70, 0, 0.06);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 70, 0, 0.15);
+        }
+
+
+        /* HERO IMAGE */
+
+        .hero-image {
             position: relative;
         }
 
-        .small-title {
-            color: #ffd166;
-            font-size: 1.2rem;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
+        .hero-image img {
+            width: 100%;
+            max-height: 540px;
+
+            object-fit: cover;
+
+            border-radius: 18px;
+
+            border: 1px solid rgba(255, 140, 40, 0.45);
+
+            box-shadow:
+                0 20px 70px rgba(0, 0, 0, 0.7),
+                0 0 40px rgba(255, 70, 0, 0.25);
         }
 
-        h1 {
-            font-size: clamp(4rem, 13vw, 10rem);
-            font-weight: 900;
-            text-transform: uppercase;
-            line-height: 0.85;
-            letter-spacing: 8px;
-            color: #fff;
-            text-shadow:
-                0 0 10px #ff6a00,
-                0 0 30px #ff4500,
-                0 0 70px #ff0000;
-            animation: glow 2s infinite alternate;
+        .image-label {
+            position: absolute;
+
+            bottom: 18px;
+            left: 18px;
+
+            padding: 9px 14px;
+
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+
+            border-radius: 7px;
+
+            font-size: 0.8rem;
+            color: #ffd18a;
         }
 
-        @keyframes glow {
-            from {
-                text-shadow:
-                    0 0 10px #ff6a00,
-                    0 0 30px #ff4500;
-            }
 
-            to {
-                text-shadow:
-                    0 0 20px #ffd000,
-                    0 0 50px #ff4500,
-                    0 0 90px #ff0000;
-            }
-        }
-
-        .subtitle {
-            margin-top: 30px;
-            max-width: 800px;
-            font-size: 1.4rem;
-            line-height: 1.6;
-            color: #ffe8c2;
-        }
-
-        .badge {
-            margin-top: 35px;
-            padding: 15px 30px;
-            border: 2px solid #ffb000;
-            border-radius: 50px;
-            color: #ffd166;
-            font-weight: bold;
-            letter-spacing: 2px;
-            box-shadow: 0 0 25px #ff5e00;
-        }
+        /* =========================
+           GENERAL SECTIONS
+        ========================= */
 
         section {
-            padding: 100px 8%;
-            position: relative;
+            padding: 90px 7%;
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 50px;
-            color: #ffd166;
-            text-shadow: 0 0 20px #ff4500;
-        }
-
-        .glaze {
-            max-width: 1000px;
+        .container {
+            max-width: 1150px;
             margin: auto;
-            padding: 50px;
-            background: rgba(20, 5, 0, 0.75);
-            border: 1px solid #ff6a00;
-            border-radius: 20px;
-            box-shadow: 0 0 40px rgba(255, 69, 0, 0.4);
+        }
+
+        .section-heading {
             text-align: center;
+            margin-bottom: 45px;
         }
 
-        .glaze p {
-            font-size: 1.35rem;
+        .section-heading span {
+            color: #ff9d00;
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            margin-top: 10px;
+
+            font-size: clamp(2rem, 4vw, 3.2rem);
+
+            color: white;
+
+            text-shadow:
+                0 0 20px rgba(255, 69, 0, 0.4);
+        }
+
+        .section-heading p {
+            max-width: 650px;
+            margin: 15px auto 0;
+
+            color: #bcaea5;
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           GLAZE SECTION
+        ========================= */
+
+        .glaze-box {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(105, 26, 3, 0.5),
+                    rgba(20, 3, 1, 0.8)
+                );
+
+            border: 1px solid rgba(255, 100, 0, 0.3);
+
+            border-radius: 18px;
+
+            padding: 42px;
+
+            text-align: center;
+
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .glaze-box p {
+            max-width: 850px;
+
+            margin: auto;
+
+            font-size: 1.12rem;
             line-height: 1.9;
-            color: #ffe9c9;
+
+            color: #eadbd0;
         }
 
-        .highlight {
-            color: #ffb300;
-            font-weight: 900;
+        .gold {
+            color: #ffb52e;
+            font-weight: bold;
         }
 
-        /* Stats */
+        .fire-text {
+            color: #ff6a00;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           STATS
+        ========================= */
+
         .stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-            max-width: 1100px;
-            margin: auto;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
         }
 
         .stat {
-            padding: 35px 20px;
-            background: linear-gradient(
-                145deg,
-                rgba(255, 69, 0, 0.25),
-                rgba(30, 0, 0, 0.8)
-            );
-            border: 1px solid #ff7100;
-            border-radius: 18px;
+            padding: 28px 20px;
+
+            background: rgba(255, 60, 0, 0.055);
+
+            border: 1px solid rgba(255, 100, 0, 0.2);
+
+            border-radius: 14px;
+
             text-align: center;
-            transition: 0.3s;
+
+            transition: 0.25s;
         }
 
         .stat:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 0 35px #ff4500;
+            transform: translateY(-6px);
+
+            border-color: rgba(255, 140, 40, 0.6);
+
+            background: rgba(255, 70, 0, 0.1);
+
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
 
-        .stat h3 {
-            font-size: 2rem;
-            color: #ffd166;
+        .stat-icon {
+            font-size: 1.7rem;
             margin-bottom: 10px;
         }
 
+        .stat h3 {
+            color: #ffb52e;
+            font-size: 1.4rem;
+            margin-bottom: 6px;
+        }
+
         .stat p {
-            color: #ddd;
+            color: #a99b92;
+            font-size: 0.9rem;
         }
 
-        /* Quote */
-        .quote {
-            max-width: 900px;
-            margin: auto;
-            text-align: center;
-            font-size: 2.2rem;
-            font-weight: bold;
-            color: #fff;
-            line-height: 1.5;
-            padding: 60px 30px;
-            border-top: 2px solid #ff4500;
-            border-bottom: 2px solid #ff4500;
-            text-shadow: 0 0 15px #ff4500;
-        }
 
-        /* Reasons */
-        .reasons {
-            max-width: 1000px;
-            margin: auto;
+        /* =========================
+           GALLERY
+        ========================= */
+
+        .gallery {
             display: grid;
-            gap: 20px;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+        .gallery-card {
+            position: relative;
+            overflow: hidden;
+
+            border-radius: 14px;
+
+            height: 270px;
+
+            background: #160402;
+
+            border: 1px solid rgba(255, 100, 0, 0.2);
+
+            cursor: pointer;
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: transform 0.5s;
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.06);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            padding: 20px;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(0, 0, 0, 0.9)
+                );
+
+            color: white;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           REASONS
+        ========================= */
+
+        .reasons {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
         }
 
         .reason {
-            padding: 25px;
-            background: rgba(255, 69, 0, 0.12);
-            border-left: 5px solid #ff6500;
-            border-radius: 8px;
-            font-size: 1.2rem;
+            display: flex;
+            gap: 15px;
+
+            padding: 24px;
+
+            border-radius: 13px;
+
+            background: rgba(255, 70, 0, 0.055);
+
+            border: 1px solid rgba(255, 100, 0, 0.18);
+
             transition: 0.25s;
         }
 
         .reason:hover {
-            background: rgba(255, 69, 0, 0.25);
-            transform: translateX(10px);
+            transform: translateX(5px);
+
+            border-color: rgba(255, 140, 40, 0.5);
         }
 
-        .reason strong {
-            color: #ffd166;
+        .reason-icon {
+            font-size: 1.5rem;
         }
 
-        /* Final */
-        .final {
-            min-height: 70vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        .reason h3 {
+            color: #ffb52e;
+            margin-bottom: 7px;
+        }
+
+        .reason p {
+            color: #b9aaa1;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+
+        /* =========================
+           QUOTE
+        ========================= */
+
+        .quote-section {
+            padding-top: 70px;
+            padding-bottom: 70px;
+        }
+
+        .quote {
             text-align: center;
+
+            max-width: 850px;
+
+            margin: auto;
+
+            padding: 45px;
+
+            border-top: 1px solid #85330c;
+            border-bottom: 1px solid #85330c;
+        }
+
+        .quote-mark {
+            font-size: 3rem;
+            color: #ff7800;
+        }
+
+        .quote h2 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+
+            color: #fff;
+
+            line-height: 1.4;
+
+            margin: 10px 0;
+
+            text-shadow:
+                0 0 20px rgba(255, 80, 0, 0.5);
+        }
+
+        .quote p {
+            color: #9f9188;
+        }
+
+
+        /* =========================
+           FINAL SECTION
+        ========================= */
+
+        .final {
+            text-align: center;
+
+            padding: 120px 20px;
+
+            position: relative;
+        }
+
+        .final::before {
+            content: "";
+
+            position: absolute;
+
+            width: 400px;
+            height: 400px;
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
+
+            background: #ff4500;
+
+            filter: blur(180px);
+
+            opacity: 0.12;
+
+            pointer-events: none;
         }
 
         .final h2 {
-            font-size: clamp(3rem, 8vw, 7rem);
+            position: relative;
+
+            font-size: clamp(3rem, 7vw, 6rem);
+
             color: #fff;
+
             text-shadow:
                 0 0 15px #ff9d00,
-                0 0 40px #ff4500,
-                0 0 80px #ff0000;
+                0 0 45px #ff4500;
         }
 
         .final p {
-            margin-top: 25px;
-            font-size: 1.5rem;
-            color: #ffdca8;
+            position: relative;
+
+            margin-top: 18px;
+
+            color: #d0bdb0;
+
+            font-size: 1.1rem;
         }
 
-        .fire {
-            font-size: 5rem;
-            margin-bottom: 20px;
-            animation: bounce 1s infinite alternate;
+        .final .btn {
+            display: inline-block;
+
+            margin-top: 28px;
         }
 
-        @keyframes bounce {
-            from {
-                transform: translateY(0);
-            }
 
-            to {
-                transform: translateY(-15px);
-            }
-        }
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
+            padding: 25px 7%;
+
             text-align: center;
-            padding: 30px;
-            border-top: 1px solid #572000;
-            color: #999;
+
+            border-top: 1px solid rgba(255, 80, 0, 0.15);
+
+            color: #766b65;
+
+            font-size: 0.85rem;
         }
 
+
+        /* =========================
+           BACK TO TOP
+        ========================= */
+
+        .top-button {
+            position: fixed;
+
+            right: 22px;
+            bottom: 22px;
+
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #8f2b08;
+
+            color: white;
+
+            border-radius: 50%;
+
+            text-decoration: none;
+
+            opacity: 0.8;
+
+            transition: 0.25s;
+
+            z-index: 500;
+        }
+
+        .top-button:hover {
+            opacity: 1;
+            background: #ff6500;
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            nav ul {
+                gap: 15px;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero {
+                padding-top: 120px;
+            }
+
+            .hero-image {
+                max-width: 700px;
+                margin: auto;
+            }
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .gallery {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .reasons {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
         @media (max-width: 600px) {
-            h1 {
-                letter-spacing: 3px;
+
+            nav {
+                padding: 14px 5%;
             }
 
-            .subtitle {
-                font-size: 1.1rem;
+            nav ul {
+                display: none;
             }
 
-            .glaze {
-                padding: 30px 20px;
+            .hero {
+                min-height: auto;
+                padding: 110px 5% 60px;
+            }
+
+            .hero h1 {
+                font-size: 4rem;
+            }
+
+            section {
+                padding: 70px 5%;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-card {
+                height: 300px;
+            }
+
+            .glaze-box {
+                padding: 28px 20px;
             }
 
             .quote {
-                font-size: 1.5rem;
+                padding: 35px 20px;
             }
         }
     </style>
 </head>
 
-<body>
 
-    <header>
-        <div class="small-title">The Flame Hashira</div>
+<body id="top">
 
-        <h1>RENGOKU</h1>
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
 
-        <p class="subtitle">
-            Not just a Hashira. Not just a swordsman.
-            A walking definition of <strong>HIM.</strong>
-        </p>
+    <nav>
 
-        <div class="badge">
-            🔥 SET YOUR HEART ABLAZE 🔥
+        <div class="logo">
+            🔥 RENGOKU
         </div>
+
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#stats">Stats</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#why">Why He's HIM</a></li>
+        </ul>
+
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-text">
+
+                <div class="eyebrow">
+                    The Flame Hashira
+                </div>
+
+                <h1>
+                    KYOJURO<br>
+                    <span>RENGOKU</span>
+                </h1>
+
+                <p class="hero-description">
+                    A Hashira whose spirit burns brighter than the flames
+                    surrounding his blade. Fearless, passionate, disciplined,
+                    and somehow capable of making every scene feel like
+                    the main event.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#why" class="btn btn-primary">
+                        🔥 Witness The Glaze
+                    </a>
+
+                    <a href="#gallery" class="btn btn-secondary">
+                        View Gallery
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-image">
+
+                <img
+                    src="https://demonslayer-anime.com/mugentrainarc/story/SYS/CONTENTS/story_2108_photo_1634679405873803170"
+                    alt="Kyojuro Rengoku from Demon Slayer Mugen Train"
+                >
+
+                <div class="image-label">
+                    Flame Hashira • Mugen Train
+                </div>
+
+            </div>
+
+        </div>
+
     </header>
 
 
-    <section>
-        <h2 class="section-title">WHY IS HE HIM?</h2>
+    <!-- =========================
+         ABOUT
+    ========================== -->
 
-        <div class="glaze">
-            <p>
-                Kyojuro Rengoku doesn't need an introduction.
-                The moment he enters the battlefield, the atmosphere changes.
-                His <span class="highlight">confidence</span>,
-                <span class="highlight">discipline</span>,
-                <span class="highlight">strength</span>,
-                and <span class="highlight">unbreakable spirit</span>
-                put him in a different category entirely.
-                <br><br>
-                Bro doesn't merely fight demons.
-                <span class="highlight">Bro makes the entire battlefield look like his domain.</span>
-                <br><br>
-                While everyone else is trying to survive,
-                Rengoku is out here treating impossible situations like
-                another Tuesday at the office.
-            </p>
+    <section id="about">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span>THE MAN. THE MYTH.</span>
+
+                <h2>Why Rengoku Hits Different</h2>
+
+                <p>
+                    There are strong characters.
+                    There are charismatic characters.
+                    Then there is Rengoku.
+                </p>
+
+            </div>
+
+
+            <div class="glaze-box">
+
+                <p>
+
+                    Kyojuro Rengoku isn't simply powerful.
+                    He has the kind of <span class="gold">presence</span>
+                    that makes you immediately understand why he is a Hashira.
+
+                    <br><br>
+
+                    His confidence never feels empty.
+                    His kindness never makes him look weak.
+                    His determination never disappears when things become difficult.
+
+                    <br><br>
+
+                    He is the perfect combination of
+                    <span class="fire-text">strength, discipline, courage,
+                    compassion and absolute HIM energy.</span>
+
+                    <br><br>
+
+                    Basically...
+
+                    <span class="gold">
+                        the man was born with the difficulty setting permanently
+                        locked on "legendary."
+                    </span>
+
+                </p>
+
+            </div>
+
         </div>
+
     </section>
 
 
-    <section>
-        <h2 class="section-title">THE RENGOKU DIFFERENCE</h2>
+    <!-- =========================
+         STATS
+    ========================== -->
 
-        <div class="stats">
+    <section id="stats">
 
-            <div class="stat">
-                <h3>🔥 100%</h3>
-                <p>Flame Energy</p>
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span>UNOFFICIAL BUT COMPLETELY ACCURATE</span>
+
+                <h2>Rengoku Statistics</h2>
+
+                <p>
+                    Scientifically questionable.
+                    Spiritually undeniable.
+                </p>
+
             </div>
 
-            <div class="stat">
-                <h3>💪 MAX</h3>
-                <p>Determination</p>
-            </div>
 
-            <div class="stat">
-                <h3>🗿 S-TIER</h3>
-                <p>Presence</p>
-            </div>
+            <div class="stats">
 
-            <div class="stat">
-                <h3>♾️ ∞</h3>
-                <p>Willpower</p>
+                <div class="stat">
+                    <div class="stat-icon">🔥</div>
+                    <h3>100/100</h3>
+                    <p>Flame Energy</p>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-icon">👑</div>
+                    <h3>∞</h3>
+                    <p>Aura</p>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-icon">💪</div>
+                    <h3>S+</h3>
+                    <p>Determination</p>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-icon">❤️</div>
+                    <h3>MAX</h3>
+                    <p>Heart</p>
+                </div>
+
             </div>
 
         </div>
+
     </section>
 
 
-    <section>
-        <h2 class="section-title">THE PHILOSOPHY</h2>
+    <!-- =========================
+         QUOTE
+    ========================== -->
+
+    <section class="quote-section">
 
         <div class="quote">
-            "SET YOUR HEART ABLAZE."
+
+            <div class="quote-mark">
+                “
+            </div>
+
+            <h2>
+                SET YOUR HEART ABLAZE.
+            </h2>
+
+            <p>
+                — Kyojuro Rengoku
+            </p>
+
         </div>
+
     </section>
 
 
-    <section>
-        <h2 class="section-title">THE GLAZE LIST</h2>
+    <!-- =========================
+         GALLERY
+    ========================== -->
 
-        <div class="reasons">
+    <section id="gallery">
 
-            <div class="reason">
-                🔥 <strong>Presence:</strong>
-                He walks into a room and immediately becomes the main character.
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span>FLAME HASHIRA ARCHIVE</span>
+
+                <h2>Rengoku Gallery</h2>
+
+                <p>
+                    A small collection of Rengoku moments.
+                    Click any image to view it.
+                </p>
+
             </div>
 
-            <div class="reason">
-                ⚔️ <strong>Combat Ability:</strong>
-                His swordsmanship and mastery of Flame Breathing are elite.
-            </div>
 
-            <div class="reason">
-                🧠 <strong>Mindset:</strong>
-                Absolute commitment. No excuses. No hesitation.
-            </div>
+            <div class="gallery">
 
-            <div class="reason">
-                ❤️ <strong>Heart:</strong>
-                His compassion is just as powerful as his swordsmanship.
-            </div>
+                <!-- Official Demon Slayer screenshot -->
 
-            <div class="reason">
-                🗿 <strong>Aura:</strong>
-                The man has enough aura to power an entire city.
-            </div>
+                <div
+                    class="gallery-card"
+                    onclick="openImage(this.querySelector('img').src)"
+                >
 
-            <div class="reason">
-                👑 <strong>Leadership:</strong>
-                A true Hashira who inspires the people around him.
+                    <img
+                        src="https://demonslayer-anime.com/mugentrainarc/story/SYS/CONTENTS/story_2108_photo_1634679405873803170"
+                        alt="Rengoku standing on the Mugen Train"
+                    >
+
+                    <div class="gallery-overlay">
+                        The Flame Hashira
+                    </div>
+
+                </div>
+
+
+                <!-- Anime screenshot -->
+
+                <div
+                    class="gallery-card"
+                    onclick="openImage(this.querySelector('img').src)"
+                >
+
+                    <img
+                        src="https://www.cheatsheet.com/wp-content/uploads/2021/11/Rengoku-Demon-Slayer.jpg"
+                        alt="Rengoku smiling"
+                    >
+
+                    <div class="gallery-overlay">
+                        That Rengoku Smile 🔥
+                    </div>
+
+                </div>
+
+
+                <!-- Mugen Train action -->
+
+                <div
+                    class="gallery-card"
+                    onclick="openImage(this.querySelector('img').src)"
+                >
+
+                    <img
+                        src="https://i.pinimg.com/originals/a8/0c/3b/a80c3b5cb3a778507394061c84b07534.jpg"
+                        alt="Rengoku preparing for battle"
+                    >
+
+                    <div class="gallery-overlay">
+                        Flame Breathing
+                    </div>
+
+                </div>
+
+
+                <!-- Another anime image -->
+
+                <div
+                    class="gallery-card"
+                    onclick="openImage(this.querySelector('img').src)"
+                >
+
+                    <img
+                        src="https://alfabetajuega.com/hero/2025/09/la-pelicula-de-demon-slayer-el-castillo-infinito-no-logro-vencer-a-el-tren-infinito-en-este-aspecto.jpg?width=1200"
+                        alt="Rengoku with Tanjiro on the Mugen Train"
+                    >
+
+                    <div class="gallery-overlay">
+                        Mugen Train
+                    </div>
+
+                </div>
+
+
+                <!-- Fiery artwork -->
+
+                <div
+                    class="gallery-card"
+                    onclick="openImage(this.querySelector('img').src)"
+                >
+
+                    <img
+                        src="https://wall.alphacoders.com/big.php?i=1272712"
+                        alt="Kyojuro Rengoku"
+                    >
+
+                    <div class="gallery-overlay">
+                        Pure Flame Energy
+                    </div>
+
+                </div>
+
+
+                <!-- Anime profile -->
+
+                <div
+                    class="gallery-card"
+                    onclick="openImage(this.querySelector('img').src)"
+                >
+
+                    <img
+                        src="https://www.cheatsheet.com/wp-content/uploads/2021/11/Rengoku-Demon-Slayer.jpg"
+                        alt="Rengoku close-up"
+                    >
+
+                    <div class="gallery-overlay">
+                        The Face of HIM
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
+
     </section>
 
+
+    <!-- =========================
+         WHY HE IS HIM
+    ========================== -->
+
+    <section id="why">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span>THE EVIDENCE</span>
+
+                <h2>Why He's HIM</h2>
+
+                <p>
+                    The glazing department has reviewed the evidence.
+                    The verdict is unanimous.
+                </p>
+
+            </div>
+
+
+            <div class="reasons">
+
+                <div class="reason">
+
+                    <div class="reason-icon">🔥</div>
+
+                    <div>
+
+                        <h3>His Presence</h3>
+
+                        <p>
+                            He doesn't need to announce that he's important.
+                            The moment he appears, the entire atmosphere changes.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="reason">
+
+                    <div class="reason-icon">⚔️</div>
+
+                    <div>
+
+                        <h3>His Skill</h3>
+
+                        <p>
+                            A Hashira who has completely mastered his Flame
+                            Breathing style and fights with incredible precision.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="reason">
+
+                    <div class="reason-icon">🧠</div>
+
+                    <div>
+
+                        <h3>His Mindset</h3>
+
+                        <p>
+                            No excuses. No unnecessary hesitation.
+                            Rengoku commits himself completely to his duty.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="reason">
+
+                    <div class="reason-icon">❤️</div>
+
+                    <div>
+
+                        <h3>His Heart</h3>
+
+                        <p>
+                            His strength isn't just physical.
+                            His compassion and willingness to protect others
+                            are central to who he is.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="reason">
+
+                    <div class="reason-icon">👑</div>
+
+                    <div>
+
+                        <h3>His Leadership</h3>
+
+                        <p>
+                            He inspires people around him through his actions,
+                            confidence and absolute commitment.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="reason">
+
+                    <div class="reason-icon">🗿</div>
+
+                    <div>
+
+                        <h3>The Aura</h3>
+
+                        <p>
+                            Completely unnecessary statistic, but let's be honest:
+                            the aura is off the charts.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FINAL
+    ========================== -->
 
     <section class="final">
 
-        <div class="fire">🔥</div>
-
-        <h2>RENGOKU IS HIM.</h2>
+        <h2>
+            RENGOKU IS HIM.
+        </h2>
 
         <p>
-            No debate. No discussion. No further questions.
+            The Flame Hashira. Forever blazing.
         </p>
+
+        <a
+            href="#top"
+            class="btn btn-primary"
+        >
+            🔥 Back To The Top
+        </a>
 
     </section>
 
 
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
     <footer>
-        Made for the appreciation of the Flame Hashira 🔥
+
+        Kyojuro Rengoku Appreciation Society 🔥
+
+        <br><br>
+
+        <span>
+            Demon Slayer: Kimetsu no Yaiba © Koyoharu Gotouge / SHUEISHA / Aniplex / ufotable
+        </span>
+
     </footer>
+
+
+    <!-- =========================
+         BACK TO TOP
+    ========================== -->
+
+    <a
+        href="#top"
+        class="top-button"
+        aria-label="Back to top"
+    >
+        ↑
+    </a>
+
+
+    <!-- =========================
+         IMAGE VIEWER
+    ========================== -->
+
+    <div
+        id="imageViewer"
+        style="
+            display:none;
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,0.92);
+            z-index:2000;
+            align-items:center;
+            justify-content:center;
+            padding:30px;
+            cursor:pointer;
+        "
+        onclick="closeImage()"
+    >
+
+        <img
+            id="largeImage"
+            src=""
+            alt="Rengoku enlarged image"
+            style="
+                max-width:95%;
+                max-height:90vh;
+                object-fit:contain;
+                border-radius:12px;
+                box-shadow:0 0 60px rgba(255,90,0,0.35);
+            "
+        >
+
+    </div>
+
+
+    <script>
+
+        function openImage(src) {
+
+            const viewer = document.getElementById("imageViewer");
+            const image = document.getElementById("largeImage");
+
+            image.src = src;
+
+            viewer.style.display = "flex";
+
+            document.body.style.overflow = "hidden";
+        }
+
+
+        function closeImage() {
+
+            const viewer = document.getElementById("imageViewer");
+
+            viewer.style.display = "none";
+
+            document.body.style.overflow = "auto";
+        }
+
+
+        document.addEventListener("keydown", function(event) {
+
+            if (event.key === "Escape") {
+                closeImage();
+            }
+
+        });
+
+    </script>
 
 </body>
 </html>
