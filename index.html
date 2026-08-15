@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Kyojuro Rengoku — Flame Hashira</title>
@@ -28,9 +31,9 @@
         }
 
         body {
+            background: #120603;
+            color: #f7eee8;
             font-family: Georgia, "Times New Roman", serif;
-            color: #f4eee8;
-            background: #090706;
             overflow-x: hidden;
         }
 
@@ -41,15 +44,76 @@
 
 
         /* =========================================================
+           LIVE FIRE BACKGROUND
+        ========================================================= */
+
+        #fireCanvas {
+            position: fixed;
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            z-index: -5;
+
+            pointer-events: none;
+        }
+
+        .fire-light {
+            position: fixed;
+            inset: 0;
+
+            z-index: -4;
+
+            pointer-events: none;
+
+            background:
+                radial-gradient(
+                    ellipse at 50% 105%,
+                    rgba(255, 67, 5, 0.38),
+                    transparent 48%
+                ),
+                radial-gradient(
+                    circle at 85% 45%,
+                    rgba(255, 119, 20, 0.18),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 10% 60%,
+                    rgba(255, 69, 10, 0.13),
+                    transparent 35%
+                );
+        }
+
+        .fire-overlay {
+            position: fixed;
+            inset: 0;
+
+            z-index: -3;
+
+            pointer-events: none;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(15, 3, 1, 0.45),
+                    rgba(25, 5, 1, 0.12),
+                    rgba(10, 2, 1, 0.62)
+                );
+        }
+
+
+        /* =========================================================
            NAVIGATION
         ========================================================= */
 
         nav {
             position: fixed;
+
             top: 0;
             left: 0;
-            width: 100%;
 
+            width: 100%;
             height: 72px;
 
             display: flex;
@@ -60,36 +124,41 @@
 
             z-index: 1000;
 
-            background: rgba(9, 7, 6, 0.82);
-            backdrop-filter: blur(14px);
+            background:
+                rgba(20, 5, 2, 0.72);
 
-            border-bottom: 1px solid rgba(255, 140, 60, 0.12);
+            backdrop-filter: blur(15px);
+
+            border-bottom:
+                1px solid rgba(255, 125, 35, 0.2);
         }
 
-        .nav-logo {
+        .logo {
             font-family: Arial, sans-serif;
 
-            font-size: 0.9rem;
-            font-weight: 700;
+            font-size: 0.82rem;
+            font-weight: bold;
 
             letter-spacing: 3px;
             text-transform: uppercase;
 
-            color: #e8a044;
+            color: #ffb45c;
         }
 
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 30px;
 
             list-style: none;
 
             font-family: Arial, sans-serif;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
+
+            font-size: 0.7rem;
+
+            letter-spacing: 1.5px;
             text-transform: uppercase;
 
-            color: #a9a09a;
+            color: #d8c4b8;
         }
 
         .nav-links a {
@@ -97,7 +166,7 @@
         }
 
         .nav-links a:hover {
-            color: #e6a14a;
+            color: #ff9235;
         }
 
 
@@ -116,40 +185,6 @@
             padding: 120px 7% 80px;
 
             overflow: hidden;
-
-            background:
-                radial-gradient(
-                    circle at 75% 45%,
-                    rgba(167, 48, 8, 0.28),
-                    transparent 35%
-                ),
-                linear-gradient(
-                    115deg,
-                    #080605 0%,
-                    #100907 55%,
-                    #1b0904 100%
-                );
-        }
-
-        /* subtle flame-like light */
-        .hero::after {
-            content: "";
-
-            position: absolute;
-
-            width: 600px;
-            height: 600px;
-
-            right: -250px;
-            bottom: -250px;
-
-            background: #b93208;
-
-            filter: blur(180px);
-
-            opacity: 0.12;
-
-            pointer-events: none;
         }
 
         .hero-content {
@@ -159,307 +194,344 @@
             margin: auto;
 
             position: relative;
-            z-index: 2;
+            z-index: 5;
         }
 
-        .hero-small {
+        .hero-kicker {
             font-family: Arial, sans-serif;
 
-            font-size: 0.78rem;
+            font-size: 0.72rem;
 
             letter-spacing: 5px;
             text-transform: uppercase;
 
-            color: #d58c3d;
+            color: #ffb45c;
 
             margin-bottom: 28px;
         }
 
-        .hero h1 {
+        .hero-title {
             font-size: clamp(5rem, 13vw, 11rem);
 
             font-weight: 400;
 
-            line-height: 0.78;
+            line-height: 0.76;
 
-            letter-spacing: -6px;
+            letter-spacing: -7px;
 
             text-transform: uppercase;
 
-            color: #f4eee8;
-
-            max-width: 1000px;
+            text-shadow:
+                0 10px 50px rgba(0, 0, 0, 0.65);
         }
 
-        .hero h1 span {
+        .hero-title span {
             display: block;
 
-            color: #b94b18;
+            margin-left: 7%;
 
-            margin-left: 8%;
+            color: #ff6420;
 
             text-shadow:
-                0 0 40px rgba(185, 75, 24, 0.2);
+                0 0 35px rgba(255, 69, 0, 0.5),
+                0 0 90px rgba(255, 55, 0, 0.2);
         }
 
         .hero-line {
-            width: 100px;
+            width: 110px;
             height: 1px;
 
-            background: #c97b32;
+            margin: 48px 0 25px;
 
-            margin: 48px 0 28px;
+            background:
+                linear-gradient(
+                    90deg,
+                    #ff8a32,
+                    transparent
+                );
         }
 
         .hero-description {
-            max-width: 550px;
+            max-width: 570px;
 
             font-family: Arial, sans-serif;
 
-            font-size: 1rem;
+            color: #d5c1b6;
 
             line-height: 1.9;
 
-            color: #aaa09a;
+            font-size: 0.98rem;
         }
 
-        .hero-link {
+        .hero-button {
             display: inline-flex;
 
             align-items: center;
+
             gap: 15px;
 
-            margin-top: 35px;
+            margin-top: 32px;
+
+            padding: 14px 22px;
+
+            border:
+                1px solid rgba(255, 143, 56, 0.5);
+
+            background:
+                rgba(255, 77, 10, 0.09);
+
+            color: #ffb66b;
 
             font-family: Arial, sans-serif;
 
-            font-size: 0.78rem;
+            font-size: 0.7rem;
 
             letter-spacing: 2px;
             text-transform: uppercase;
 
-            color: #e3a05a;
-
-            transition: gap 0.3s ease;
+            transition:
+                0.3s ease;
         }
 
-        .hero-link:hover {
-            gap: 22px;
+        .hero-button:hover {
+            transform: translateY(-3px);
+
+            background:
+                rgba(255, 77, 10, 0.2);
+
+            box-shadow:
+                0 12px 40px rgba(255, 66, 0, 0.2);
         }
 
 
         /* =========================================================
-           SECTION SYSTEM
+           HERO IMAGE
+        ========================================================= */
+
+        .hero-image {
+            position: absolute;
+
+            right: 4%;
+            bottom: 0;
+
+            height: 92vh;
+
+            max-width: 43vw;
+
+            z-index: 2;
+
+            object-fit: contain;
+
+            object-position: bottom;
+
+            filter:
+                drop-shadow(
+                    0 20px 50px rgba(0, 0, 0, 0.7)
+                );
+
+            animation:
+                heroFloat 5s ease-in-out infinite;
+        }
+
+        @keyframes heroFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+
+        }
+
+
+        /* =========================================================
+           GENERAL SECTIONS
         ========================================================= */
 
         section {
-            padding: 130px 7%;
+            position: relative;
+
+            padding: 125px 7%;
         }
 
-        .section-inner {
-            max-width: 1100px;
+        .container {
+            max-width: 1120px;
+
             margin: auto;
         }
 
         .section-number {
             font-family: Arial, sans-serif;
 
-            font-size: 0.7rem;
+            font-size: 0.68rem;
 
             letter-spacing: 4px;
 
-            color: #a65b28;
+            color: #e07c32;
 
             margin-bottom: 20px;
         }
 
         .section-title {
-            font-size: clamp(2.8rem, 6vw, 5.5rem);
+            font-size:
+                clamp(3rem, 6vw, 5.5rem);
 
             font-weight: 400;
 
             line-height: 0.95;
 
-            letter-spacing: -2px;
+            color: #f7eee8;
 
-            color: #eee6df;
-
-            margin-bottom: 35px;
+            margin-bottom: 30px;
         }
 
         .section-title span {
-            color: #a94518;
+            color: #ff6820;
         }
 
         .section-text {
+            max-width: 720px;
+
             font-family: Arial, sans-serif;
 
-            color: #99918b;
-
-            font-size: 1rem;
+            color: #c8b5aa;
 
             line-height: 1.95;
 
-            max-width: 700px;
+            font-size: 0.98rem;
         }
 
 
         /* =========================================================
-           INTRODUCTION
+           ABOUT
         ========================================================= */
 
-        .introduction {
-            background: #0c0908;
+        .about {
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(30, 6, 2, 0.7),
+                    rgba(45, 9, 2, 0.58)
+                );
         }
 
-        .intro-grid {
+        .about-grid {
             display: grid;
 
-            grid-template-columns: 0.8fr 1.2fr;
+            grid-template-columns:
+                0.8fr 1.2fr;
 
             gap: 100px;
 
             align-items: center;
         }
 
-        .intro-label {
-            font-family: Arial, sans-serif;
-
-            font-size: 0.72rem;
-
-            letter-spacing: 3px;
-            text-transform: uppercase;
-
-            color: #9d6338;
-        }
-
-        .intro-large {
-            font-size: clamp(1.7rem, 3vw, 2.5rem);
+        .about-large {
+            font-size:
+                clamp(1.7rem, 3vw, 2.5rem);
 
             line-height: 1.5;
 
-            color: #d8cec6;
-
-            margin-top: 20px;
+            color: #e9dcd4;
         }
 
-        .intro-large strong {
-            color: #e19a50;
+        .about-large strong {
+            color: #ff9a42;
+
             font-weight: 400;
         }
 
 
         /* =========================================================
-           CHARACTER
+           CHARACTER PHILOSOPHY
         ========================================================= */
 
         .character {
             background:
-                linear-gradient(
-                    180deg,
-                    #0c0908 0%,
-                    #120907 100%
-                );
+                rgba(14, 3, 1, 0.65);
         }
 
         .character-grid {
             display: grid;
 
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns:
+                1fr 1fr;
 
-            gap: 90px;
+            gap: 80px;
 
             align-items: center;
         }
 
-        .character-card {
-            min-height: 500px;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-
-            padding: 50px;
-
-            position: relative;
+        .character-image {
+            height: 570px;
 
             overflow: hidden;
 
-            background:
-                radial-gradient(
-                    circle at 50% 70%,
-                    rgba(176, 50, 8, 0.25),
-                    transparent 55%
-                ),
-                #110806;
-
-            border: 1px solid rgba(194, 94, 38, 0.2);
-        }
-
-        .character-kanji {
-            position: absolute;
-
-            top: 30px;
-            right: 35px;
-
-            font-size: 9rem;
-
-            color: rgba(180, 65, 20, 0.08);
-
-            user-select: none;
-        }
-
-        .character-card h3 {
             position: relative;
 
-            font-size: 2.5rem;
+            border:
+                1px solid rgba(255, 108, 30, 0.25);
+
+            background: #200602;
+        }
+
+        .character-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition:
+                transform 0.7s ease;
+        }
+
+        .character-image:hover img {
+            transform: scale(1.045);
+        }
+
+        .character-image::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    transparent 55%,
+                    rgba(0, 0, 0, 0.65)
+                );
+
+            pointer-events: none;
+        }
+
+        .character-content h3 {
+            font-size:
+                clamp(2.2rem, 4vw, 4rem);
 
             font-weight: 400;
 
-            color: #e7ddd5;
+            color: #eee3dc;
+
+            margin-bottom: 25px;
         }
 
-        .character-card p {
-            position: relative;
+        .character-content h3 span {
+            color: #ff6a21;
+        }
 
-            margin-top: 12px;
-
+        .character-content p {
             font-family: Arial, sans-serif;
 
-            font-size: 0.85rem;
+            color: #bca9a0;
 
-            color: #8f8781;
-        }
+            line-height: 1.95;
 
-        .character-info {
-            display: grid;
-
-            gap: 30px;
-        }
-
-        .info-item {
-            padding-bottom: 25px;
-
-            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-        }
-
-        .info-item h3 {
-            font-family: Arial, sans-serif;
-
-            font-size: 0.7rem;
-
-            letter-spacing: 3px;
-            text-transform: uppercase;
-
-            color: #a96031;
-
-            margin-bottom: 10px;
-        }
-
-        .info-item p {
-            font-size: 1.25rem;
-
-            color: #cfc5bd;
+            margin-bottom: 22px;
         }
 
 
@@ -471,61 +543,168 @@
             min-height: 80vh;
 
             display: flex;
+
             align-items: center;
+
+            text-align: center;
 
             background:
                 radial-gradient(
-                    ellipse at center,
-                    rgba(131, 37, 8, 0.16),
-                    transparent 60%
-                ),
-                #090706;
+                    ellipse at center bottom,
+                    rgba(255, 73, 0, 0.22),
+                    transparent 58%
+                );
         }
 
         .philosophy-content {
             max-width: 900px;
-            margin: auto;
 
-            text-align: center;
+            margin: auto;
         }
 
         .philosophy-title {
-            font-size: clamp(3rem, 7vw, 6.5rem);
+            font-size:
+                clamp(3.5rem, 8vw, 7rem);
 
             font-weight: 400;
 
             line-height: 1.05;
-
-            color: #eee5de;
-
-            margin-bottom: 40px;
         }
 
         .philosophy-title span {
-            color: #ad4618;
-        }
+            color: #ff641e;
 
-        .philosophy-text {
-            font-family: Arial, sans-serif;
-
-            max-width: 700px;
-
-            margin: auto;
-
-            color: #918983;
-
-            line-height: 2;
-
-            font-size: 1rem;
+            text-shadow:
+                0 0 35px rgba(255, 66, 0, 0.35);
         }
 
         .divider {
-            width: 60px;
+            width: 70px;
             height: 1px;
 
-            background: #bd6b31;
+            background: #ff8c3a;
 
             margin: 40px auto;
+        }
+
+        .philosophy-text {
+            max-width: 720px;
+
+            margin: auto;
+
+            font-family: Arial, sans-serif;
+
+            color: #c3afa5;
+
+            line-height: 2;
+        }
+
+
+        /* =========================================================
+           THREE CHARACTER MOMENTS
+        ========================================================= */
+
+        .moments {
+            background:
+                rgba(28, 6, 2, 0.68);
+        }
+
+        .moments-header {
+            max-width: 720px;
+
+            margin-bottom: 55px;
+        }
+
+        .moments-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .moment {
+            position: relative;
+
+            height: 480px;
+
+            overflow: hidden;
+
+            border:
+                1px solid rgba(255, 107, 30, 0.2);
+
+            background: #1b0502;
+        }
+
+        .moment img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition:
+                transform 0.7s ease,
+                filter 0.7s ease;
+        }
+
+        .moment:hover img {
+            transform: scale(1.06);
+
+            filter:
+                brightness(1.08);
+        }
+
+        .moment-overlay {
+            position: absolute;
+
+            inset: 0;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: flex-end;
+
+            padding: 28px;
+
+            background:
+                linear-gradient(
+                    transparent 40%,
+                    rgba(8, 2, 1, 0.93)
+                );
+        }
+
+        .moment-number {
+            font-family: Arial, sans-serif;
+
+            font-size: 0.65rem;
+
+            letter-spacing: 3px;
+
+            color: #ff9845;
+
+            margin-bottom: 10px;
+        }
+
+        .moment h3 {
+            font-size: 1.8rem;
+
+            font-weight: 400;
+
+            color: #f5e8e0;
+
+            margin-bottom: 10px;
+        }
+
+        .moment p {
+            font-family: Arial, sans-serif;
+
+            color: #c2aea4;
+
+            line-height: 1.65;
+
+            font-size: 0.84rem;
         }
 
 
@@ -534,51 +713,55 @@
         ========================================================= */
 
         .mugen {
-            background: #0d0806;
+            background:
+                rgba(14, 3, 1, 0.68);
         }
 
-        .mugen-layout {
+        .mugen-grid {
             display: grid;
 
-            grid-template-columns: 0.65fr 1.35fr;
+            grid-template-columns:
+                0.6fr 1.4fr;
 
             gap: 90px;
         }
 
-        .mugen-side {
+        .mugen-label {
             font-family: Arial, sans-serif;
 
-            font-size: 0.75rem;
+            font-size: 0.72rem;
 
-            line-height: 1.8;
+            letter-spacing: 3px;
 
-            color: #766e69;
+            color: #e1843a;
 
-            border-left: 1px solid #713414;
+            border-left:
+                1px solid #b94d1a;
 
-            padding-left: 25px;
+            padding-left: 20px;
         }
 
-        .mugen-main h3 {
-            font-size: clamp(2rem, 4vw, 3.5rem);
+        .mugen-content h3 {
+            font-size:
+                clamp(2.2rem, 4vw, 4rem);
 
             font-weight: 400;
 
             line-height: 1.15;
 
-            color: #ddd3cb;
+            color: #eee2da;
 
-            margin-bottom: 25px;
+            margin-bottom: 28px;
         }
 
-        .mugen-main p {
+        .mugen-content p {
             font-family: Arial, sans-serif;
 
-            color: #918984;
+            color: #bba89f;
 
-            line-height: 1.9;
+            line-height: 1.95;
 
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
 
@@ -590,42 +773,41 @@
             background:
                 linear-gradient(
                     180deg,
-                    #0d0806,
-                    #090706
+                    rgba(45, 8, 2, 0.7),
+                    rgba(12, 2, 1, 0.8)
                 );
         }
 
         .legacy-content {
-            max-width: 850px;
+            max-width: 880px;
+
             margin: auto;
         }
 
         .legacy-quote {
-            font-size: clamp(2rem, 4vw, 3.8rem);
+            font-size:
+                clamp(2.1rem, 4vw, 4rem);
 
             line-height: 1.25;
 
-            font-weight: 400;
+            color: #f2e6df;
 
-            color: #e5dcd5;
+            border-left:
+                2px solid #ff651d;
 
-            border-left: 2px solid #b54c1b;
-
-            padding-left: 40px;
-
-            margin-bottom: 40px;
+            padding-left: 38px;
         }
 
         .legacy-text {
             font-family: Arial, sans-serif;
 
-            color: #8d8580;
+            color: #b8a69c;
 
-            line-height: 1.9;
+            line-height: 1.95;
 
-            max-width: 700px;
+            margin-top: 35px;
 
-            padding-left: 42px;
+            padding-left: 40px;
         }
 
 
@@ -637,27 +819,24 @@
             min-height: 75vh;
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
             text-align: center;
 
-            position: relative;
-
-            overflow: hidden;
-
             background:
                 radial-gradient(
-                    circle at center,
-                    rgba(173, 54, 9, 0.22),
-                    transparent 50%
-                ),
-                #080605;
+                    circle at center bottom,
+                    rgba(255, 79, 0, 0.3),
+                    transparent 58%
+                );
         }
 
         .final-content {
             position: relative;
-            z-index: 2;
+
+            z-index: 5;
         }
 
         .final-small {
@@ -667,21 +846,22 @@
 
             letter-spacing: 5px;
 
-            color: #9b6138;
-
             text-transform: uppercase;
+
+            color: #e48a3c;
         }
 
         .final h2 {
-            font-size: clamp(4rem, 11vw, 10rem);
+            font-size:
+                clamp(4rem, 11vw, 10rem);
 
             font-weight: 400;
 
-            line-height: 0.85;
+            line-height: 0.82;
 
-            letter-spacing: -5px;
+            letter-spacing: -6px;
 
-            color: #eee5de;
+            color: #f7eee8;
 
             margin: 25px 0;
         }
@@ -689,13 +869,16 @@
         .final h2 span {
             display: block;
 
-            color: #aa4115;
+            color: #ff621d;
+
+            text-shadow:
+                0 0 45px rgba(255, 70, 0, 0.45);
         }
 
         .final p {
             font-family: Arial, sans-serif;
 
-            color: #817a75;
+            color: #c3ada2;
 
             font-size: 0.9rem;
 
@@ -708,72 +891,102 @@
         ========================================================= */
 
         footer {
-            padding: 30px 7%;
+            padding: 28px 7%;
 
             display: flex;
+
             justify-content: space-between;
-            align-items: center;
 
-            background: #060504;
+            background: #090201;
 
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            border-top:
+                1px solid rgba(255, 100, 30, 0.15);
 
             font-family: Arial, sans-serif;
 
-            font-size: 0.7rem;
+            font-size: 0.68rem;
 
-            color: #605b57;
+            letter-spacing: 2px;
 
-            letter-spacing: 1px;
+            color: #796c64;
         }
 
 
         /* =========================================================
-           ANIMATIONS
+           SCROLL REVEAL
         ========================================================= */
 
-        .fade-in {
-            animation: fadeIn 1.2s ease forwards;
+        .reveal {
+            opacity: 0;
+
+            transform:
+                translateY(30px);
+
+            transition:
+                opacity 0.9s ease,
+                transform 0.9s ease;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+        .reveal.visible {
+            opacity: 1;
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            transform:
+                translateY(0);
         }
 
 
         /* =========================================================
-           RESPONSIVE
+           MOBILE
         ========================================================= */
 
-        @media (max-width: 850px) {
+        @media (max-width: 1000px) {
+
+            .hero-image {
+                opacity: 0.45;
+
+                right: -10%;
+
+                max-width: 60vw;
+            }
+
+            .moments-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 800px) {
 
             .nav-links {
-                gap: 15px;
+                display: none;
             }
 
-            .hero h1 {
-                font-size: clamp(4rem, 17vw, 7rem);
-            }
-
-            .intro-grid,
+            .about-grid,
             .character-grid,
-            .mugen-layout {
+            .mugen-grid {
                 grid-template-columns: 1fr;
 
-                gap: 50px;
+                gap: 55px;
             }
 
-            .character-card {
-                min-height: 400px;
+            .hero-image {
+                height: 75vh;
+
+                opacity: 0.3;
+
+                right: -18%;
             }
+
+            .moments-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .moment {
+                height: 500px;
+            }
+
         }
 
 
@@ -783,42 +996,37 @@
                 padding: 0 5%;
             }
 
-            .nav-links {
-                display: none;
-            }
-
             section {
                 padding: 90px 6%;
             }
 
             .hero {
-                padding: 120px 6% 80px;
+                padding:
+                    120px 6% 80px;
             }
 
-            .hero h1 {
-                letter-spacing: -3px;
+            .hero-title {
+                letter-spacing: -4px;
             }
 
-            .hero h1 span {
+            .hero-title span {
                 margin-left: 0;
             }
 
-            .character-card {
-                padding: 30px;
+            .hero-image {
+                height: 65vh;
 
-                min-height: 350px;
+                right: -35%;
+
+                opacity: 0.25;
             }
 
-            .character-kanji {
-                font-size: 6rem;
-            }
-
-            .legacy-quote {
-                padding-left: 25px;
+            .character-image {
+                height: 450px;
             }
 
             .legacy-text {
-                padding-left: 27px;
+                padding-left: 25px;
             }
 
             footer {
@@ -828,13 +1036,27 @@
 
                 text-align: center;
             }
+
         }
 
     </style>
+
 </head>
 
 
 <body>
+
+
+    <!-- =========================================================
+         FIRE
+    ========================================================== -->
+
+    <canvas id="fireCanvas"></canvas>
+
+    <div class="fire-light"></div>
+
+    <div class="fire-overlay"></div>
+
 
     <!-- =========================================================
          NAVIGATION
@@ -842,7 +1064,7 @@
 
     <nav>
 
-        <div class="nav-logo">
+        <div class="logo">
             Kyojuro Rengoku
         </div>
 
@@ -861,11 +1083,11 @@
             </li>
 
             <li>
-                <a href="#mugen">Mugen Train</a>
+                <a href="#moments">Moments</a>
             </li>
 
             <li>
-                <a href="#legacy">Legacy</a>
+                <a href="#mugen">Mugen Train</a>
             </li>
 
         </ul>
@@ -879,29 +1101,47 @@
 
     <header class="hero">
 
-        <div class="hero-content fade-in">
+        <img
+            class="hero-image"
+            src="images/rengoku-hero.png"
+            alt="Kyojuro Rengoku"
+        >
 
-            <div class="hero-small">
+        <div class="hero-content reveal">
+
+            <div class="hero-kicker">
                 Demon Slayer Corps — Flame Hashira
             </div>
 
-            <h1>
+            <h1 class="hero-title">
+
                 Kyojuro
-                <span>Rengoku</span>
+
+                <span>
+                    Rengoku
+                </span>
+
             </h1>
 
             <div class="hero-line"></div>
 
             <p class="hero-description">
-                A swordsman whose conviction was as powerful as his blade.
-                Rengoku stood among the highest-ranking members of the
-                Demon Slayer Corps, carrying the title of Flame Hashira
-                with absolute pride and resolve.
+
+                A swordsman whose presence burns as brightly as the flames
+                he commands. Rengoku represents conviction, courage and the
+                responsibility that comes with possessing great strength.
+
             </p>
 
-            <a href="#about" class="hero-link">
-                Explore his story
+            <a
+                href="#about"
+                class="hero-button"
+            >
+
+                Discover the Flame
+
                 <span>→</span>
+
             </a>
 
         </div>
@@ -913,42 +1153,46 @@
          ABOUT
     ========================================================== -->
 
-    <section id="about" class="introduction">
+    <section id="about" class="about">
 
-        <div class="section-inner">
+        <div class="container reveal">
 
-            <div class="intro-grid">
+            <div class="about-grid">
 
                 <div>
 
-                    <div class="intro-label">
-                        01 — Introduction
+                    <div class="section-number">
+                        01 — THE MAN
                     </div>
 
-                    <div class="intro-large">
-                        <strong>Kyojuro Rengoku</strong>
-                        was not defined solely by strength.
-                    </div>
+                    <h2 class="section-title">
+
+                        More than
+                        <span>strength.</span>
+
+                    </h2>
 
                 </div>
 
                 <div>
 
-                    <p class="section-text">
-                        He was defined by the principles behind that strength:
-                        courage, responsibility, compassion and an unwavering
-                        determination to protect those who could not protect
-                        themselves.
+                    <p class="about-large">
+
+                        <strong>Kyojuro Rengoku</strong>
+                        is remembered not only for how powerful he was,
+                        but for the conviction with which he lived.
+
                     </p>
 
                     <br>
 
                     <p class="section-text">
-                        As the Flame Hashira, he represented the ideals of the
-                        Demon Slayer Corps through both his actions and his
-                        character. His bright personality concealed neither
-                        discipline nor seriousness; instead, the two existed
-                        together.
+
+                        Cheerful and straightforward, Rengoku possesses a
+                        remarkable sense of responsibility. His confidence
+                        never exists merely for himself; his strength is
+                        consistently directed toward protecting others.
+
                     </p>
 
                 </div>
@@ -966,83 +1210,55 @@
 
     <section id="character" class="character">
 
-        <div class="section-inner">
+        <div class="container reveal">
 
             <div class="section-number">
-                02 — The Flame Hashira
+                02 — CHARACTER
             </div>
 
             <div class="character-grid">
 
-                <div class="character-card">
+                <div class="character-image">
 
-                    <div class="character-kanji">
-                        炎
-                    </div>
-
-                    <h3>
-                        Flame
-                    </h3>
-
-                    <p>
-                        Hashira of the Demon Slayer Corps
-                    </p>
+                    <img
+                        src="images/rengoku-determined.png"
+                        alt="Rengoku standing with determination"
+                        loading="lazy"
+                    >
 
                 </div>
 
+                <div class="character-content">
 
-                <div class="character-info">
+                    <h3>
 
-                    <div class="info-item">
+                        Confidence
+                        <span>without hesitation.</span>
 
-                        <h3>
-                            Rank
-                        </h3>
+                    </h3>
 
-                        <p>
-                            Hashira — Flame Pillar
-                        </p>
+                    <p>
 
-                    </div>
+                        Rengoku's expression and posture often communicate
+                        the same quality: absolute certainty in his purpose.
 
+                    </p>
 
-                    <div class="info-item">
+                    <p>
 
-                        <h3>
-                            Breathing Style
-                        </h3>
+                        His confidence is not presented as arrogance.
+                        It comes from knowing what he believes his duty to be
+                        and refusing to abandon it.
 
-                        <p>
-                            Flame Breathing
-                        </p>
+                    </p>
 
-                    </div>
+                    <p>
 
+                        That is what makes the Flame Hashira so compelling:
+                        the fire surrounding him reflects the fire of his
+                        conviction.
 
-                    <div class="info-item">
-
-                        <h3>
-                            Personality
-                        </h3>
-
-                        <p>
-                            Energetic, direct and deeply principled
-                        </p>
-
-                    </div>
-
-
-                    <div class="info-item">
-
-                        <h3>
-                            Core Principle
-                        </h3>
-
-                        <p>
-                            Protect those who are weaker.
-                        </p>
-
-                    </div>
+                    </p>
 
                 </div>
 
@@ -1059,26 +1275,180 @@
 
     <section id="philosophy" class="philosophy">
 
-        <div class="philosophy-content">
+        <div class="philosophy-content reveal">
 
             <div class="section-number">
-                03 — Philosophy
+                03 — PHILOSOPHY
             </div>
 
             <h2 class="philosophy-title">
+
                 Set your heart
-                <span>ablaze.</span>
+
+                <span>
+                    ablaze.
+                </span>
+
             </h2>
 
             <div class="divider"></div>
 
             <p class="philosophy-text">
-                Rengoku's philosophy is ultimately about moving forward.
-                Strength carries responsibility, and the purpose of that
-                strength is not personal glory but the protection of others.
-                His optimism is therefore more than personality—it is a
-                deliberate expression of conviction.
+
+                Rengoku's philosophy is built around courage, responsibility
+                and continuing forward even when circumstances become
+                difficult. His optimism is not weakness; it is the attitude
+                of someone who has decided what he stands for.
+
             </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         THREE MOMENTS
+    ========================================================== -->
+
+    <section id="moments" class="moments">
+
+        <div class="container reveal">
+
+            <div class="moments-header">
+
+                <div class="section-number">
+                    04 — THREE SIDES OF THE FLAME
+                </div>
+
+                <h2 class="section-title">
+
+                    What his
+                    <span>presence</span>
+                    tells us.
+
+                </h2>
+
+                <p class="section-text">
+
+                    These moments show why Rengoku works so well as a character:
+                    the pose and expression communicate something about the
+                    person behind the title of Flame Hashira.
+
+                </p>
+
+            </div>
+
+
+            <div class="moments-grid">
+
+
+                <!-- =================================================
+                     MOMENT 1
+                ================================================== -->
+
+                <article class="moment">
+
+                    <img
+                        src="images/rengoku-resilience.png"
+                        alt="Rengoku in a determined battle stance"
+                        loading="lazy"
+                    >
+
+                    <div class="moment-overlay">
+
+                        <div class="moment-number">
+                            01 — RESOLVE
+                        </div>
+
+                        <h3>
+                            Standing firm.
+                        </h3>
+
+                        <p>
+
+                            His lowered stance and focused expression suggest
+                            resilience rather than retreat. Even under pressure,
+                            his attention remains fixed on the task before him.
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- =================================================
+                     MOMENT 2
+                ================================================== -->
+
+                <article class="moment">
+
+                    <img
+                        src="images/rengoku-leader.png"
+                        alt="Rengoku reaching forward"
+                        loading="lazy"
+                    >
+
+                    <div class="moment-overlay">
+
+                        <div class="moment-number">
+                            02 — LEADERSHIP
+                        </div>
+
+                        <h3>
+                            Leading forward.
+                        </h3>
+
+                        <p>
+
+                            The extended hand gives this image a different
+                            feeling. It communicates movement, confidence and
+                            the instinct to bring others forward with him.
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- =================================================
+                     MOMENT 3
+                ================================================== -->
+
+                <article class="moment">
+
+                    <img
+                        src="images/rengoku-determined.png"
+                        alt="Rengoku surrounded by flame"
+                        loading="lazy"
+                    >
+
+                    <div class="moment-overlay">
+
+                        <div class="moment-number">
+                            03 — DETERMINATION
+                        </div>
+
+                        <h3>
+                            A burning conviction.
+                        </h3>
+
+                        <p>
+
+                            With his expression focused and his posture ready,
+                            Rengoku appears completely committed to moving
+                            forward. The flames become an extension of that
+                            determination.
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
 
         </div>
 
@@ -1091,51 +1461,116 @@
 
     <section id="mugen" class="mugen">
 
-        <div class="section-inner">
+        <div class="container reveal">
 
             <div class="section-number">
-                04 — Mugen Train
+                05 — MUGEN TRAIN
             </div>
 
-            <div class="mugen-layout">
+            <div class="mugen-grid">
 
-                <div class="mugen-side">
+                <div class="mugen-label">
 
-                    MUGEN TRAIN
+                    FLAME HASHIRA
 
                     <br><br>
 
-                    A mission involving a rapidly growing number of
-                    disappearances aboard the Mugen Train.
+                    MUGEN TRAIN
 
                 </div>
 
-
-                <div class="mugen-main">
+                <div class="mugen-content">
 
                     <h3>
-                        The mission that defined his legacy.
+
+                        The mission that
+                        revealed his character.
+
                     </h3>
 
                     <p>
-                        Rengoku was sent to investigate the Mugen Train,
-                        where more than forty people had disappeared.
-                        Tanjiro, Nezuko, Zenitsu and Inosuke would eventually
-                        join him aboard the train.
+
+                        After more than forty people were reported missing
+                        aboard the Mugen Train, Rengoku was sent to investigate.
+                        Tanjiro, Nezuko, Zenitsu and Inosuke would join him
+                        on the mission.
+
                     </p>
 
                     <p>
-                        What followed became one of the defining chapters
-                        of the series—not simply because of the battle,
-                        but because of the example Rengoku set for those
-                        who witnessed it.
+
+                        The Mugen Train story places Rengoku in a position
+                        where his strength is only part of the story. His
+                        decisions, his responsibility toward others and his
+                        ability to inspire the people around him become just
+                        as important.
+
                     </p>
 
                     <p>
-                        His resolve never depended on whether victory was
-                        guaranteed. His responsibility remained the same
-                        regardless of the circumstances.
+
+                        That is ultimately why his presence leaves such a
+                        strong impression: he doesn't simply fight in front
+                        of others. He gives them something to carry forward.
+
                     </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         HEROIC IMAGE FEATURE
+    ========================================================== -->
+
+    <section class="hero-feature">
+
+        <div class="container reveal">
+
+            <div class="character-grid">
+
+                <div class="character-content">
+
+                    <div class="section-number">
+                        06 — THE FLAME
+                    </div>
+
+                    <h3>
+
+                        A presence
+                        <span>impossible to ignore.</span>
+
+                    </h3>
+
+                    <p>
+
+                        The first image captures the version of Rengoku that
+                        defines his visual identity: a commanding expression,
+                        intense flames and an unmistakable sense of confidence.
+
+                    </p>
+
+                    <p>
+
+                        It is heroic without needing to exaggerate him.
+                        His expression already does the work.
+
+                    </p>
+
+                </div>
+
+                <div class="character-image">
+
+                    <img
+                        src="images/rengoku-hero.png"
+                        alt="Heroic portrait of Kyojuro Rengoku"
+                        loading="lazy"
+                    >
 
                 </div>
 
@@ -1150,27 +1585,29 @@
          LEGACY
     ========================================================== -->
 
-    <section id="legacy" class="legacy">
+    <section class="legacy">
 
-        <div class="section-inner">
+        <div class="container reveal">
 
             <div class="legacy-content">
 
                 <div class="section-number">
-                    05 — Legacy
+                    07 — LEGACY
                 </div>
 
                 <div class="legacy-quote">
-                    His greatest strength was never simply the power
-                    of his sword.
+
+                    The flame matters because
+                    of what it gives light to.
+
                 </div>
 
                 <p class="legacy-text">
-                    Rengoku's influence comes from the example he leaves
-                    behind. His confidence, compassion and determination
-                    become lessons carried forward by those around him.
-                    He demonstrates that courage is not the absence of fear,
-                    but the decision to continue fulfilling one's duty.
+
+                    Rengoku's influence comes from the example he leaves behind.
+                    His courage and conviction become something that the people
+                    around him can remember and carry forward.
+
                 </p>
 
             </div>
@@ -1186,19 +1623,24 @@
 
     <section class="final">
 
-        <div class="final-content">
+        <div class="final-content reveal">
 
             <div class="final-small">
                 Flame Hashira
             </div>
 
             <h2>
-                Rengoku
-                <span>Kyojuro</span>
+
+                Kyojuro
+
+                <span>
+                    Rengoku
+                </span>
+
             </h2>
 
             <p>
-                A flame that continues to burn.
+                Set your heart ablaze.
             </p>
 
         </div>
@@ -1225,59 +1667,349 @@
 
     <!-- =========================================================
          JAVASCRIPT
+         LIVE FLAMES + EMBERS + SCROLL ANIMATION
     ========================================================== -->
 
     <script>
 
-        /*
-            Smooth reveal when sections enter the viewport.
-        */
+        /* =========================================================
+           CANVAS FIRE
+        ========================================================= */
 
-        const sections = document.querySelectorAll(
-            "section"
+        const canvas =
+            document.getElementById("fireCanvas");
+
+        const ctx =
+            canvas.getContext("2d");
+
+        let width;
+        let height;
+
+        let particles = [];
+
+
+        function resizeCanvas() {
+
+            width =
+                canvas.width =
+                window.innerWidth;
+
+            height =
+                canvas.height =
+                window.innerHeight;
+
+            createParticles();
+
+        }
+
+
+        window.addEventListener(
+            "resize",
+            resizeCanvas
         );
 
-        const observer = new IntersectionObserver(
 
-            entries => {
+        /* =========================================================
+           PARTICLE CREATION
+        ========================================================= */
 
-                entries.forEach(entry => {
+        function createParticle() {
 
-                    if (entry.isIntersecting) {
+            return {
 
-                        entry.target.style.opacity = "1";
+                x:
+                    Math.random() * width,
 
-                        entry.target.style.transform =
-                            "translateY(0)";
+                y:
+                    height +
+                    Math.random() * 100,
+
+                size:
+                    Math.random() * 4 + 1,
+
+                speed:
+                    Math.random() * 2.2 + 0.5,
+
+                drift:
+                    (Math.random() - 0.5) * 1.2,
+
+                opacity:
+                    Math.random() * 0.7 + 0.2,
+
+                life:
+                    Math.random() * Math.PI * 2
+
+            };
+
+        }
+
+
+        function createParticles() {
+
+            particles = [];
+
+            const amount =
+                Math.min(
+                    220,
+                    Math.floor(width / 5)
+                );
+
+            for (
+                let i = 0;
+                i < amount;
+                i++
+            ) {
+
+                const particle =
+                    createParticle();
+
+                particle.y =
+                    Math.random() * height;
+
+                particles.push(
+                    particle
+                );
+
+            }
+
+        }
+
+
+        resizeCanvas();
+
+
+        /* =========================================================
+           DRAW PARTICLE
+        ========================================================== */
+
+        function drawParticle(particle) {
+
+            const glow =
+                particle.size * 6;
+
+            const gradient =
+                ctx.createRadialGradient(
+                    particle.x,
+                    particle.y,
+                    0,
+                    particle.x,
+                    particle.y,
+                    glow
+                );
+
+
+            gradient.addColorStop(
+                0,
+                `rgba(
+                    255,
+                    220,
+                    130,
+                    ${particle.opacity}
+                )`
+            );
+
+
+            gradient.addColorStop(
+                0.2,
+                `rgba(
+                    255,
+                    125,
+                    30,
+                    ${particle.opacity * 0.8}
+                )`
+            );
+
+
+            gradient.addColorStop(
+                1,
+                "rgba(255, 40, 0, 0)"
+            );
+
+
+            ctx.beginPath();
+
+            ctx.arc(
+                particle.x,
+                particle.y,
+                particle.size,
+                0,
+                Math.PI * 2
+            );
+
+            ctx.fillStyle =
+                gradient;
+
+            ctx.fill();
+
+        }
+
+
+        /* =========================================================
+           ANIMATE FIRE
+        ========================================================== */
+
+        function animateFire() {
+
+            ctx.clearRect(
+                0,
+                0,
+                width,
+                height
+            );
+
+
+            particles.forEach(
+                particle => {
+
+                    particle.life += 0.025;
+
+                    particle.y -=
+                        particle.speed;
+
+                    particle.x +=
+                        particle.drift +
+                        Math.sin(
+                            particle.life
+                        ) * 0.35;
+
+
+                    particle.opacity =
+                        0.25 +
+                        (
+                            Math.sin(
+                                particle.life
+                            ) + 1
+                        ) * 0.3;
+
+
+                    if (
+                        particle.y < -30
+                    ) {
+
+                        particle.x =
+                            Math.random() * width;
+
+                        particle.y =
+                            height + 30;
 
                     }
 
-                });
 
-            },
+                    drawParticle(
+                        particle
+                    );
 
-            {
-                threshold: 0.08
+                }
+            );
+
+
+            requestAnimationFrame(
+                animateFire
+            );
+
+        }
+
+
+        animateFire();
+
+
+        /* =========================================================
+           SCROLL REVEAL
+        ========================================================== */
+
+        const revealElements =
+            document.querySelectorAll(
+                ".reveal"
+            );
+
+
+        const observer =
+            new IntersectionObserver(
+
+                entries => {
+
+                    entries.forEach(
+                        entry => {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target.classList.add(
+                                    "visible"
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+
+                {
+                    threshold: 0.12
+                }
+
+            );
+
+
+        revealElements.forEach(
+            element => {
+
+                observer.observe(
+                    element
+                );
+
             }
-
         );
 
 
-        sections.forEach(section => {
+        /* =========================================================
+           MOUSE PARALLAX ON HERO
+        ========================================================== */
 
-            section.style.opacity = "0";
+        const heroImage =
+            document.querySelector(
+                ".hero-image"
+            );
 
-            section.style.transform =
-                "translateY(20px)";
 
-            section.style.transition =
-                "opacity 0.9s ease, transform 0.9s ease";
+        document.addEventListener(
+            "mousemove",
+            event => {
 
-            observer.observe(section);
+                if (
+                    window.innerWidth < 800
+                ) {
+                    return;
+                }
 
-        });
+
+                const x =
+                    (
+                        event.clientX /
+                        window.innerWidth
+                    ) - 0.5;
+
+
+                const y =
+                    (
+                        event.clientY /
+                        window.innerHeight
+                    ) - 0.5;
+
+
+                heroImage.style.transform =
+                    `translate(
+                        ${x * 12}px,
+                        ${y * 8}px
+                    )`;
+
+            }
+        );
 
     </script>
 
 </body>
+
 </html>
