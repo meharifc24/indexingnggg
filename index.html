@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kyojuro Rengoku — HIM</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            background:
+                radial-gradient(circle at 50% 20%, #ff9d00 0%, #7a1600 25%, #180000 65%, #050505 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated flames */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.25;
+            background:
+                radial-gradient(circle at 10% 90%, #ff4d00 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, #ff8c00 0%, transparent 20%),
+                radial-gradient(circle at 50% 100%, #ff0000 0%, transparent 25%);
+            animation: flames 3s infinite alternate;
+        }
+
+        @keyframes flames {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.12);
+            }
+        }
+
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .small-title {
+            color: #ffd166;
+            font-size: 1.2rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(4rem, 13vw, 10rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 0.85;
+            letter-spacing: 8px;
+            color: #fff;
+            text-shadow:
+                0 0 10px #ff6a00,
+                0 0 30px #ff4500,
+                0 0 70px #ff0000;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow:
+                    0 0 10px #ff6a00,
+                    0 0 30px #ff4500;
+            }
+
+            to {
+                text-shadow:
+                    0 0 20px #ffd000,
+                    0 0 50px #ff4500,
+                    0 0 90px #ff0000;
+            }
+        }
+
+        .subtitle {
+            margin-top: 30px;
+            max-width: 800px;
+            font-size: 1.4rem;
+            line-height: 1.6;
+            color: #ffe8c2;
+        }
+
+        .badge {
+            margin-top: 35px;
+            padding: 15px 30px;
+            border: 2px solid #ffb000;
+            border-radius: 50px;
+            color: #ffd166;
+            font-weight: bold;
+            letter-spacing: 2px;
+            box-shadow: 0 0 25px #ff5e00;
+        }
+
+        section {
+            padding: 100px 8%;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 50px;
+            color: #ffd166;
+            text-shadow: 0 0 20px #ff4500;
+        }
+
+        .glaze {
+            max-width: 1000px;
+            margin: auto;
+            padding: 50px;
+            background: rgba(20, 5, 0, 0.75);
+            border: 1px solid #ff6a00;
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(255, 69, 0, 0.4);
+            text-align: center;
+        }
+
+        .glaze p {
+            font-size: 1.35rem;
+            line-height: 1.9;
+            color: #ffe9c9;
+        }
+
+        .highlight {
+            color: #ffb300;
+            font-weight: 900;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .stat {
+            padding: 35px 20px;
+            background: linear-gradient(
+                145deg,
+                rgba(255, 69, 0, 0.25),
+                rgba(30, 0, 0, 0.8)
+            );
+            border: 1px solid #ff7100;
+            border-radius: 18px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .stat:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 0 35px #ff4500;
+        }
+
+        .stat h3 {
+            font-size: 2rem;
+            color: #ffd166;
+            margin-bottom: 10px;
+        }
+
+        .stat p {
+            color: #ddd;
+        }
+
+        /* Quote */
+        .quote {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #fff;
+            line-height: 1.5;
+            padding: 60px 30px;
+            border-top: 2px solid #ff4500;
+            border-bottom: 2px solid #ff4500;
+            text-shadow: 0 0 15px #ff4500;
+        }
+
+        /* Reasons */
+        .reasons {
+            max-width: 1000px;
+            margin: auto;
+            display: grid;
+            gap: 20px;
+        }
+
+        .reason {
+            padding: 25px;
+            background: rgba(255, 69, 0, 0.12);
+            border-left: 5px solid #ff6500;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            transition: 0.25s;
+        }
+
+        .reason:hover {
+            background: rgba(255, 69, 0, 0.25);
+            transform: translateX(10px);
+        }
+
+        .reason strong {
+            color: #ffd166;
+        }
+
+        /* Final */
+        .final {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .final h2 {
+            font-size: clamp(3rem, 8vw, 7rem);
+            color: #fff;
+            text-shadow:
+                0 0 15px #ff9d00,
+                0 0 40px #ff4500,
+                0 0 80px #ff0000;
+        }
+
+        .final p {
+            margin-top: 25px;
+            font-size: 1.5rem;
+            color: #ffdca8;
+        }
+
+        .fire {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-15px);
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid #572000;
+            color: #999;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                letter-spacing: 3px;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .glaze {
+                padding: 30px 20px;
+            }
+
+            .quote {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="small-title">The Flame Hashira</div>
+
+        <h1>RENGOKU</h1>
+
+        <p class="subtitle">
+            Not just a Hashira. Not just a swordsman.
+            A walking definition of <strong>HIM.</strong>
+        </p>
+
+        <div class="badge">
+            🔥 SET YOUR HEART ABLAZE 🔥
+        </div>
+    </header>
+
+
+    <section>
+        <h2 class="section-title">WHY IS HE HIM?</h2>
+
+        <div class="glaze">
+            <p>
+                Kyojuro Rengoku doesn't need an introduction.
+                The moment he enters the battlefield, the atmosphere changes.
+                His <span class="highlight">confidence</span>,
+                <span class="highlight">discipline</span>,
+                <span class="highlight">strength</span>,
+                and <span class="highlight">unbreakable spirit</span>
+                put him in a different category entirely.
+                <br><br>
+                Bro doesn't merely fight demons.
+                <span class="highlight">Bro makes the entire battlefield look like his domain.</span>
+                <br><br>
+                While everyone else is trying to survive,
+                Rengoku is out here treating impossible situations like
+                another Tuesday at the office.
+            </p>
+        </div>
+    </section>
+
+
+    <section>
+        <h2 class="section-title">THE RENGOKU DIFFERENCE</h2>
+
+        <div class="stats">
+
+            <div class="stat">
+                <h3>🔥 100%</h3>
+                <p>Flame Energy</p>
+            </div>
+
+            <div class="stat">
+                <h3>💪 MAX</h3>
+                <p>Determination</p>
+            </div>
+
+            <div class="stat">
+                <h3>🗿 S-TIER</h3>
+                <p>Presence</p>
+            </div>
+
+            <div class="stat">
+                <h3>♾️ ∞</h3>
+                <p>Willpower</p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section>
+        <h2 class="section-title">THE PHILOSOPHY</h2>
+
+        <div class="quote">
+            "SET YOUR HEART ABLAZE."
+        </div>
+    </section>
+
+
+    <section>
+        <h2 class="section-title">THE GLAZE LIST</h2>
+
+        <div class="reasons">
+
+            <div class="reason">
+                🔥 <strong>Presence:</strong>
+                He walks into a room and immediately becomes the main character.
+            </div>
+
+            <div class="reason">
+                ⚔️ <strong>Combat Ability:</strong>
+                His swordsmanship and mastery of Flame Breathing are elite.
+            </div>
+
+            <div class="reason">
+                🧠 <strong>Mindset:</strong>
+                Absolute commitment. No excuses. No hesitation.
+            </div>
+
+            <div class="reason">
+                ❤️ <strong>Heart:</strong>
+                His compassion is just as powerful as his swordsmanship.
+            </div>
+
+            <div class="reason">
+                🗿 <strong>Aura:</strong>
+                The man has enough aura to power an entire city.
+            </div>
+
+            <div class="reason">
+                👑 <strong>Leadership:</strong>
+                A true Hashira who inspires the people around him.
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="final">
+
+        <div class="fire">🔥</div>
+
+        <h2>RENGOKU IS HIM.</h2>
+
+        <p>
+            No debate. No discussion. No further questions.
+        </p>
+
+    </section>
+
+
+    <footer>
+        Made for the appreciation of the Flame Hashira 🔥
+    </footer>
+
+</body>
+</html>
+```
