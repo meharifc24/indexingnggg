@@ -38,24 +38,6 @@
             line-height: 1.7;
         }
 
-        /* 2-Second Temporary Screen Shake Animation */
-        .shake-active {
-            animation: briefShake 2s ease-in-out;
-        }
-
-        @keyframes briefShake {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            10% { transform: translate(-4px, 3px) rotate(-0.5deg); }
-            20% { transform: translate(4px, -3px) rotate(0.5deg); }
-            30% { transform: translate(-4px, -2px) rotate(-0.5deg); }
-            40% { transform: translate(3px, 3px) rotate(0.5deg); }
-            50% { transform: translate(-2px, -1px) rotate(0deg); }
-            60% { transform: translate(2px, 2px) rotate(0.5deg); }
-            70% { transform: translate(-1px, -2px) rotate(-0.5deg); }
-            80% { transform: translate(1px, 1px) rotate(0deg); }
-            100% { transform: translate(0, 0) rotate(0deg); }
-        }
-
         /* Canvas Particle Layer */
         #fireCanvas {
             position: fixed;
@@ -472,10 +454,10 @@
 </head>
 <body>
 
-    <!-- Audio element pointing directly to local repository root -->
+    <!-- Audio Element pointing to root repository audio file -->
     <audio id="rengokuAudio" src="Voicy_Rengoku.mp3" preload="auto"></audio>
 
-    <!-- Canvas for Particle Fire Effects -->
+    <!-- Canvas Particle Layer -->
     <canvas id="fireCanvas"></canvas>
 
     <!-- Navigation -->
@@ -618,16 +600,21 @@
     <script>
         const audio = document.getElementById('rengokuAudio');
 
-        function playAudio() {
-            if (audio.paused) {
-                audio.play().catch(() => {});
-            }
+        // Play audio directly upon any click on the document to comply with browser audio policy
+        function triggerAudio() {
+            audio.currentTime = 0;
+            audio.play().catch(e => {
+                console.log("Audio play request failed:", e);
+            });
         }
 
-        // Trigger playback on initial click anywhere to satisfy browser autoplay requirements
-        document.addEventListener('click', playAudio, { once: true });
+        document.addEventListener('click', () => {
+            if (audio.paused) {
+                triggerAudio();
+            }
+        }, { once: true });
 
-        // Canvas Setup
+        // Canvas Flame Particle Engine
         const canvas = document.getElementById('fireCanvas');
         const ctx = canvas.getContext('2d');
 
@@ -639,7 +626,7 @@
         resizeCanvas();
 
         let particleCount = 80;
-        let jetMode = false;
+        let auraActive = false;
 
         class FlameParticle {
             constructor() {
@@ -647,20 +634,19 @@
             }
 
             reset() {
-                if (jetMode) {
-                    // Flame Jet stream firing high up from bottom-center
-                    this.x = canvas.width / 2 + (Math.random() - 0.5) * 120;
-                    this.y = canvas.height + 10;
-                    this.size = Math.random() * 8 + 3;
-                    this.speedY = Math.random() * 22 + 14; // High upward speed
-                    this.speedX = (Math.random() - 0.5) * 6; // Narrow upward stream
-                    this.opacity = Math.random() * 0.9 + 0.4;
-                    const jetColors = ['#ffffff', '#fff5b3', '#ffcc00', '#ff5500', '#e62200'];
-                    this.color = jetColors[Math.floor(Math.random() * jetColors.length)];
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + Math.random() * 30;
+
+                if (auraActive) {
+                    // Full-screen high-reaching flame particles
+                    this.size = Math.random() * 5 + 2;
+                    this.speedY = Math.random() * 10 + 6;
+                    this.speedX = (Math.random() - 0.5) * 3;
+                    this.opacity = Math.random() * 0.8 + 0.3;
+                    const colors = ['#ffffff', '#ffb700', '#ff5500', '#e62200'];
+                    this.color = colors[Math.floor(Math.random() * colors.length)];
                 } else {
-                    // Ambient embers
-                    this.x = Math.random() * canvas.width;
-                    this.y = canvas.height + Math.random() * 20;
+                    // Normal subtle floating ambient embers
                     this.size = Math.random() * 3 + 1;
                     this.speedY = Math.random() * 2.2 + 1;
                     this.speedX = (Math.random() - 0.5) * 1.2;
@@ -673,9 +659,9 @@
             update() {
                 this.y -= this.speedY;
                 this.x += this.speedX;
-                this.opacity -= jetMode ? 0.008 : 0.003;
+                this.opacity -= auraActive ? 0.005 : 0.003;
 
-                if (this.opacity <= 0 || this.y < -50) {
+                if (this.opacity <= 0 || this.y < -20) {
                     this.reset();
                 }
             }
@@ -685,7 +671,7 @@
                 ctx.fillStyle = this.color;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.shadowBlur = jetMode ? 20 : 8;
+                ctx.shadowBlur = auraActive ? 15 : 8;
                 ctx.shadowColor = this.color;
                 ctx.fill();
             }
@@ -695,6 +681,15 @@
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (auraActive) {
+                let grad = ctx.createRadialGradient(canvas.width / 2, canvas.height, 50, canvas.width / 2, canvas.height, canvas.height * 0.8);
+                grad.addColorStop(0, 'rgba(255, 85, 0, 0.35)');
+                grad.addColorStop(0.6, 'rgba(230, 34, 0, 0.15)');
+                grad.addColorStop(1, 'transparent');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
 
             particles.forEach(p => {
                 p.update();
@@ -761,22 +756,13 @@
         const igniteBtn = document.getElementById('igniteBtn');
 
         igniteBtn.addEventListener('click', () => {
-            playAudio();
-            jetMode = !jetMode;
+            triggerAudio();
+            auraActive = !auraActive;
 
-            // Trigger brief 2-second screen shake
-            document.body.classList.remove('shake-active');
-            void document.body.offsetWidth; // Force reflow
-            document.body.classList.add('shake-active');
-
-            setTimeout(() => {
-                document.body.classList.remove('shake-active');
-            }, 2000);
-
-            if (jetMode) {
+            if (auraActive) {
                 particleCount = 300;
                 particles = Array.from({ length: particleCount }, () => new FlameParticle());
-                igniteBtn.innerText = "SET YOUR HEART ABLAZE!";
+                igniteBtn.innerText = "HEART ABLAZE!";
                 igniteBtn.style.background = "linear-gradient(135deg, #ffffff, #ffb700, #ff5500)";
                 igniteBtn.style.color = "#000";
             } else {
