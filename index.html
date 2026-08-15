@@ -2,12 +2,10 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Kyojuro Rengoku — Flame Hashira</title>
+    <title>Kyojuro Rengoku | Flame Hashira</title>
 
     <meta
         name="description"
@@ -16,9 +14,9 @@
 
     <style>
 
-        /* =========================================================
+        /* =========================
            RESET
-        ========================================================= */
+        ========================= */
 
         * {
             margin: 0;
@@ -31,8 +29,8 @@
         }
 
         body {
-            background: #120603;
-            color: #f7eee8;
+            background: #140604;
+            color: #f5eee9;
             font-family: Georgia, "Times New Roman", serif;
             overflow-x: hidden;
         }
@@ -43,106 +41,95 @@
         }
 
 
-        /* =========================================================
-           LIVE FIRE BACKGROUND
-        ========================================================= */
+        /* =========================
+           FIRE CANVAS
+        ========================= */
 
         #fireCanvas {
             position: fixed;
             inset: 0;
-
             width: 100%;
             height: 100%;
-
             z-index: -5;
-
             pointer-events: none;
         }
 
-        .fire-light {
+        .fire-glow {
             position: fixed;
             inset: 0;
-
             z-index: -4;
-
             pointer-events: none;
 
             background:
                 radial-gradient(
-                    ellipse at 50% 105%,
-                    rgba(255, 67, 5, 0.38),
-                    transparent 48%
+                    ellipse at 50% 110%,
+                    rgba(255, 73, 8, 0.42),
+                    transparent 50%
                 ),
                 radial-gradient(
                     circle at 85% 45%,
-                    rgba(255, 119, 20, 0.18),
-                    transparent 32%
+                    rgba(255, 120, 25, 0.16),
+                    transparent 35%
                 ),
                 radial-gradient(
                     circle at 10% 60%,
-                    rgba(255, 69, 10, 0.13),
+                    rgba(255, 65, 5, 0.12),
                     transparent 35%
                 );
         }
 
-        .fire-overlay {
+        .dark-overlay {
             position: fixed;
             inset: 0;
-
             z-index: -3;
-
             pointer-events: none;
 
             background:
                 linear-gradient(
                     180deg,
-                    rgba(15, 3, 1, 0.45),
-                    rgba(25, 5, 1, 0.12),
-                    rgba(10, 2, 1, 0.62)
+                    rgba(15, 3, 1, 0.38),
+                    rgba(20, 4, 1, 0.18),
+                    rgba(8, 2, 1, 0.65)
                 );
         }
 
 
-        /* =========================================================
+        /* =========================
            NAVIGATION
-        ========================================================= */
+        ========================= */
 
         nav {
             position: fixed;
-
             top: 0;
             left: 0;
 
             width: 100%;
             height: 72px;
 
+            padding: 0 7%;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
 
-            padding: 0 7%;
+            z-index: 100;
 
-            z-index: 1000;
-
-            background:
-                rgba(20, 5, 2, 0.72);
-
+            background: rgba(18, 4, 2, 0.7);
             backdrop-filter: blur(15px);
 
             border-bottom:
-                1px solid rgba(255, 125, 35, 0.2);
+                1px solid rgba(255, 120, 35, 0.18);
         }
 
         .logo {
             font-family: Arial, sans-serif;
-
-            font-size: 0.82rem;
+            font-size: 0.78rem;
             font-weight: bold;
 
             letter-spacing: 3px;
             text-transform: uppercase;
 
-            color: #ffb45c;
+            color: #ffad58;
         }
 
         .nav-links {
@@ -152,27 +139,26 @@
             list-style: none;
 
             font-family: Arial, sans-serif;
-
-            font-size: 0.7rem;
+            font-size: 0.68rem;
 
             letter-spacing: 1.5px;
             text-transform: uppercase;
 
-            color: #d8c4b8;
+            color: #cdbbb2;
         }
 
         .nav-links a {
-            transition: color 0.25s ease;
+            transition: 0.25s ease;
         }
 
         .nav-links a:hover {
-            color: #ff9235;
+            color: #ff8c35;
         }
 
 
-        /* =========================================================
+        /* =========================
            HERO
-        ========================================================= */
+        ========================= */
 
         .hero {
             min-height: 100vh;
@@ -182,7 +168,7 @@
             display: flex;
             align-items: center;
 
-            padding: 120px 7% 80px;
+            padding: 120px 7% 70px;
 
             overflow: hidden;
         }
@@ -200,29 +186,29 @@
         .hero-kicker {
             font-family: Arial, sans-serif;
 
-            font-size: 0.72rem;
-
+            font-size: 0.7rem;
             letter-spacing: 5px;
+
             text-transform: uppercase;
 
-            color: #ffb45c;
+            color: #ffad58;
 
             margin-bottom: 28px;
         }
 
         .hero-title {
-            font-size: clamp(5rem, 13vw, 11rem);
+            font-size: clamp(4.8rem, 12vw, 10.5rem);
 
             font-weight: 400;
 
-            line-height: 0.76;
+            line-height: 0.78;
 
             letter-spacing: -7px;
 
             text-transform: uppercase;
 
             text-shadow:
-                0 10px 50px rgba(0, 0, 0, 0.65);
+                0 15px 50px rgba(0, 0, 0, 0.7);
         }
 
         .hero-title span {
@@ -230,110 +216,101 @@
 
             margin-left: 7%;
 
-            color: #ff6420;
+            color: #ff641e;
 
             text-shadow:
-                0 0 35px rgba(255, 69, 0, 0.5),
-                0 0 90px rgba(255, 55, 0, 0.2);
+                0 0 35px rgba(255, 69, 0, 0.45),
+                0 0 90px rgba(255, 55, 0, 0.18);
         }
 
         .hero-line {
             width: 110px;
             height: 1px;
 
-            margin: 48px 0 25px;
+            margin: 45px 0 24px;
 
             background:
                 linear-gradient(
                     90deg,
-                    #ff8a32,
+                    #ff8b35,
                     transparent
                 );
         }
 
         .hero-description {
-            max-width: 570px;
+            max-width: 560px;
 
             font-family: Arial, sans-serif;
 
-            color: #d5c1b6;
+            color: #d0bdb3;
+
+            font-size: 0.94rem;
 
             line-height: 1.9;
-
-            font-size: 0.98rem;
         }
 
         .hero-button {
             display: inline-flex;
-
             align-items: center;
-
             gap: 15px;
 
-            margin-top: 32px;
+            margin-top: 30px;
 
             padding: 14px 22px;
 
             border:
-                1px solid rgba(255, 143, 56, 0.5);
+                1px solid rgba(255, 143, 56, 0.45);
 
             background:
-                rgba(255, 77, 10, 0.09);
+                rgba(255, 77, 10, 0.08);
 
-            color: #ffb66b;
+            color: #ffb56a;
 
             font-family: Arial, sans-serif;
 
-            font-size: 0.7rem;
+            font-size: 0.68rem;
 
             letter-spacing: 2px;
             text-transform: uppercase;
 
-            transition:
-                0.3s ease;
+            transition: 0.3s ease;
         }
 
         .hero-button:hover {
             transform: translateY(-3px);
 
             background:
-                rgba(255, 77, 10, 0.2);
+                rgba(255, 77, 10, 0.18);
 
             box-shadow:
-                0 12px 40px rgba(255, 66, 0, 0.2);
+                0 15px 40px rgba(255, 65, 0, 0.2);
         }
-
-
-        /* =========================================================
-           HERO IMAGE
-        ========================================================= */
 
         .hero-image {
             position: absolute;
 
-            right: 4%;
+            right: 3%;
             bottom: 0;
 
-            height: 92vh;
+            height: 91vh;
 
-            max-width: 43vw;
+            max-width: 45vw;
+
+            object-fit: contain;
+            object-position: bottom;
 
             z-index: 2;
 
-            object-fit: contain;
-
-            object-position: bottom;
-
             filter:
                 drop-shadow(
-                    0 20px 50px rgba(0, 0, 0, 0.7)
+                    0 20px 55px rgba(0, 0, 0, 0.75)
                 );
 
             animation:
-                heroFloat 5s ease-in-out infinite;
+                floatingHero 5s ease-in-out infinite;
         }
 
-        @keyframes heroFloat {
+        @keyframes floatingHero {
 
             0%,
             100% {
@@ -343,34 +320,30 @@
             50% {
                 transform: translateY(-8px);
             }
-
         }
 
 
-        /* =========================================================
-           GENERAL SECTIONS
-        ========================================================= */
+        /* =========================
+           SECTIONS
+        ========================= */
 
         section {
             position: relative;
-
-            padding: 125px 7%;
+            padding: 120px 7%;
         }
 
         .container {
             max-width: 1120px;
-
             margin: auto;
         }
 
         .section-number {
             font-family: Arial, sans-serif;
 
-            font-size: 0.68rem;
-
+            font-size: 0.65rem;
             letter-spacing: 4px;
 
-            color: #e07c32;
+            color: #e1823a;
 
             margin-bottom: 20px;
         }
@@ -382,8 +355,6 @@
             font-weight: 400;
 
             line-height: 0.95;
-
-            color: #f7eee8;
 
             margin-bottom: 30px;
         }
@@ -397,24 +368,24 @@
 
             font-family: Arial, sans-serif;
 
-            color: #c8b5aa;
+            color: #c1aea5;
 
             line-height: 1.95;
 
-            font-size: 0.98rem;
+            font-size: 0.95rem;
         }
 
 
-        /* =========================================================
+        /* =========================
            ABOUT
-        ========================================================= */
+        ========================= */
 
         .about {
             background:
                 linear-gradient(
                     180deg,
-                    rgba(30, 6, 2, 0.7),
-                    rgba(45, 9, 2, 0.58)
+                    rgba(35, 7, 2, 0.68),
+                    rgba(42, 8, 2, 0.55)
                 );
         }
 
@@ -435,23 +406,22 @@
 
             line-height: 1.5;
 
-            color: #e9dcd4;
+            color: #e8dbd3;
         }
 
         .about-large strong {
-            color: #ff9a42;
-
+            color: #ff9943;
             font-weight: 400;
         }
 
 
-        /* =========================================================
-           CHARACTER PHILOSOPHY
-        ========================================================= */
+        /* =========================
+           CHARACTER
+        ========================= */
 
         .character {
             background:
-                rgba(14, 3, 1, 0.65);
+                rgba(14, 3, 1, 0.63);
         }
 
         .character-grid {
@@ -472,10 +442,10 @@
 
             position: relative;
 
-            border:
-                1px solid rgba(255, 108, 30, 0.25);
+            background: #1e0502;
 
-            background: #200602;
+            border:
+                1px solid rgba(255, 108, 30, 0.22);
         }
 
         .character-image img {
@@ -496,17 +466,16 @@
             content: "";
 
             position: absolute;
-
             inset: 0;
+
+            pointer-events: none;
 
             background:
                 linear-gradient(
                     180deg,
-                    transparent 55%,
-                    rgba(0, 0, 0, 0.65)
+                    transparent 50%,
+                    rgba(0, 0, 0, 0.55)
                 );
-
-            pointer-events: none;
         }
 
         .character-content h3 {
@@ -515,7 +484,7 @@
 
             font-weight: 400;
 
-            color: #eee3dc;
+            color: #eee2db;
 
             margin-bottom: 25px;
         }
@@ -527,7 +496,7 @@
         .character-content p {
             font-family: Arial, sans-serif;
 
-            color: #bca9a0;
+            color: #baa79e;
 
             line-height: 1.95;
 
@@ -535,15 +504,14 @@
         }
 
 
-        /* =========================================================
+        /* =========================
            PHILOSOPHY
-        ========================================================= */
+        ========================= */
 
         .philosophy {
             min-height: 80vh;
 
             display: flex;
-
             align-items: center;
 
             text-align: center;
@@ -551,20 +519,19 @@
             background:
                 radial-gradient(
                     ellipse at center bottom,
-                    rgba(255, 73, 0, 0.22),
-                    transparent 58%
+                    rgba(255, 73, 0, 0.24),
+                    transparent 60%
                 );
         }
 
         .philosophy-content {
             max-width: 900px;
-
             margin: auto;
         }
 
         .philosophy-title {
             font-size:
-                clamp(3.5rem, 8vw, 7rem);
+                clamp(3.4rem, 8vw, 7rem);
 
             font-weight: 400;
 
@@ -594,24 +561,23 @@
 
             font-family: Arial, sans-serif;
 
-            color: #c3afa5;
+            color: #c0aca3;
 
             line-height: 2;
         }
 
 
-        /* =========================================================
-           THREE CHARACTER MOMENTS
-        ========================================================= */
+        /* =========================
+           MOMENTS
+        ========================= */
 
         .moments {
             background:
-                rgba(28, 6, 2, 0.68);
+                rgba(27, 6, 2, 0.67);
         }
 
         .moments-header {
             max-width: 720px;
-
             margin-bottom: 55px;
         }
 
@@ -625,16 +591,16 @@
         }
 
         .moment {
-            position: relative;
-
             height: 480px;
+
+            position: relative;
 
             overflow: hidden;
 
+            background: #1a0502;
+
             border:
                 1px solid rgba(255, 107, 30, 0.2);
-
-            background: #1b0502;
         }
 
         .moment img {
@@ -644,15 +610,11 @@
             object-fit: cover;
 
             transition:
-                transform 0.7s ease,
-                filter 0.7s ease;
+                transform 0.7s ease;
         }
 
         .moment:hover img {
             transform: scale(1.06);
-
-            filter:
-                brightness(1.08);
         }
 
         .moment-overlay {
@@ -670,15 +632,15 @@
 
             background:
                 linear-gradient(
-                    transparent 40%,
-                    rgba(8, 2, 1, 0.93)
+                    transparent 38%,
+                    rgba(7, 2, 1, 0.95)
                 );
         }
 
         .moment-number {
             font-family: Arial, sans-serif;
 
-            font-size: 0.65rem;
+            font-size: 0.63rem;
 
             letter-spacing: 3px;
 
@@ -700,21 +662,21 @@
         .moment p {
             font-family: Arial, sans-serif;
 
-            color: #c2aea4;
+            color: #c0ada4;
 
             line-height: 1.65;
 
-            font-size: 0.84rem;
+            font-size: 0.82rem;
         }
 
 
-        /* =========================================================
+        /* =========================
            MUGEN TRAIN
-        ========================================================= */
+        ========================= */
 
         .mugen {
             background:
-                rgba(14, 3, 1, 0.68);
+                rgba(14, 3, 1, 0.67);
         }
 
         .mugen-grid {
@@ -729,11 +691,11 @@
         .mugen-label {
             font-family: Arial, sans-serif;
 
-            font-size: 0.72rem;
+            font-size: 0.7rem;
 
             letter-spacing: 3px;
 
-            color: #e1843a;
+            color: #df8139;
 
             border-left:
                 1px solid #b94d1a;
@@ -757,7 +719,7 @@
         .mugen-content p {
             font-family: Arial, sans-serif;
 
-            color: #bba89f;
+            color: #b9a69d;
 
             line-height: 1.95;
 
@@ -765,22 +727,31 @@
         }
 
 
-        /* =========================================================
+        /* =========================
+           HERO IMAGE FEATURE
+        ========================= */
+
+        .hero-feature {
+            background:
+                rgba(35, 7, 2, 0.62);
+        }
+
+
+        /* =========================
            LEGACY
-        ========================================================= */
+        ========================= */
 
         .legacy {
             background:
                 linear-gradient(
                     180deg,
-                    rgba(45, 8, 2, 0.7),
-                    rgba(12, 2, 1, 0.8)
+                    rgba(43, 8, 2, 0.68),
+                    rgba(11, 2, 1, 0.82)
                 );
         }
 
         .legacy-content {
             max-width: 880px;
-
             margin: auto;
         }
 
@@ -790,7 +761,7 @@
 
             line-height: 1.25;
 
-            color: #f2e6df;
+            color: #f1e5de;
 
             border-left:
                 2px solid #ff651d;
@@ -801,7 +772,7 @@
         .legacy-text {
             font-family: Arial, sans-serif;
 
-            color: #b8a69c;
+            color: #b6a39a;
 
             line-height: 1.95;
 
@@ -811,9 +782,9 @@
         }
 
 
-        /* =========================================================
+        /* =========================
            FINAL
-        ========================================================= */
+        ========================= */
 
         .final {
             min-height: 75vh;
@@ -828,21 +799,20 @@
             background:
                 radial-gradient(
                     circle at center bottom,
-                    rgba(255, 79, 0, 0.3),
-                    transparent 58%
+                    rgba(255, 79, 0, 0.32),
+                    transparent 60%
                 );
         }
 
         .final-content {
             position: relative;
-
             z-index: 5;
         }
 
         .final-small {
             font-family: Arial, sans-serif;
 
-            font-size: 0.7rem;
+            font-size: 0.68rem;
 
             letter-spacing: 5px;
 
@@ -878,7 +848,7 @@
         .final p {
             font-family: Arial, sans-serif;
 
-            color: #c3ada2;
+            color: #c1ada3;
 
             font-size: 0.9rem;
 
@@ -886,9 +856,9 @@
         }
 
 
-        /* =========================================================
+        /* =========================
            FOOTER
-        ========================================================= */
+        ========================= */
 
         footer {
             padding: 28px 7%;
@@ -904,7 +874,7 @@
 
             font-family: Arial, sans-serif;
 
-            font-size: 0.68rem;
+            font-size: 0.66rem;
 
             letter-spacing: 2px;
 
@@ -912,9 +882,9 @@
         }
 
 
-        /* =========================================================
-           SCROLL REVEAL
-        ========================================================= */
+        /* =========================
+           SCROLL ANIMATION
+        ========================= */
 
         .reveal {
             opacity: 0;
@@ -935,16 +905,16 @@
         }
 
 
-        /* =========================================================
-           MOBILE
-        ========================================================= */
+        /* =========================
+           TABLET
+        ========================= */
 
         @media (max-width: 1000px) {
 
             .hero-image {
-                opacity: 0.45;
+                opacity: 0.48;
 
-                right: -10%;
+                right: -8%;
 
                 max-width: 60vw;
             }
@@ -957,6 +927,10 @@
         }
 
 
+        /* =========================
+           MOBILE
+        ========================= */
+
         @media (max-width: 800px) {
 
             .nav-links {
@@ -967,16 +941,15 @@
             .character-grid,
             .mugen-grid {
                 grid-template-columns: 1fr;
-
                 gap: 55px;
             }
 
             .hero-image {
-                height: 75vh;
-
-                opacity: 0.3;
+                height: 72vh;
 
                 right: -18%;
+
+                opacity: 0.3;
             }
 
             .moments-grid {
@@ -1040,27 +1013,26 @@
         }
 
     </style>
-
 </head>
 
 
 <body>
 
 
-    <!-- =========================================================
-         FIRE
-    ========================================================== -->
+    <!-- =========================
+         LIVE FIRE
+    ========================== -->
 
     <canvas id="fireCanvas"></canvas>
 
-    <div class="fire-light"></div>
+    <div class="fire-glow"></div>
 
-    <div class="fire-overlay"></div>
+    <div class="dark-overlay"></div>
 
 
-    <!-- =========================================================
+    <!-- =========================
          NAVIGATION
-    ========================================================== -->
+    ========================== -->
 
     <nav>
 
@@ -1095,15 +1067,15 @@
     </nav>
 
 
-    <!-- =========================================================
+    <!-- =========================
          HERO
-    ========================================================== -->
+    ========================== -->
 
     <header class="hero">
 
         <img
             class="hero-image"
-            src="images/rengoku-hero.png"
+            src="rengoku-hero.png"
             alt="Kyojuro Rengoku"
         >
 
@@ -1114,22 +1086,17 @@
             </div>
 
             <h1 class="hero-title">
-
                 Kyojuro
-
-                <span>
-                    Rengoku
-                </span>
-
+                <span>Rengoku</span>
             </h1>
 
             <div class="hero-line"></div>
 
             <p class="hero-description">
 
-                A swordsman whose presence burns as brightly as the flames
-                he commands. Rengoku represents conviction, courage and the
-                responsibility that comes with possessing great strength.
+                A swordsman whose presence burns as brightly as
+                the flames he commands. Rengoku represents conviction,
+                courage and the responsibility that comes with great strength.
 
             </p>
 
@@ -1137,11 +1104,8 @@
                 href="#about"
                 class="hero-button"
             >
-
                 Discover the Flame
-
                 <span>→</span>
-
             </a>
 
         </div>
@@ -1149,9 +1113,9 @@
     </header>
 
 
-    <!-- =========================================================
+    <!-- =========================
          ABOUT
-    ========================================================== -->
+    ========================== -->
 
     <section id="about" class="about">
 
@@ -1166,10 +1130,8 @@
                     </div>
 
                     <h2 class="section-title">
-
                         More than
                         <span>strength.</span>
-
                     </h2>
 
                 </div>
@@ -1179,7 +1141,7 @@
                     <p class="about-large">
 
                         <strong>Kyojuro Rengoku</strong>
-                        is remembered not only for how powerful he was,
+                        is remembered not only for his power,
                         but for the conviction with which he lived.
 
                     </p>
@@ -1188,10 +1150,9 @@
 
                     <p class="section-text">
 
-                        Cheerful and straightforward, Rengoku possesses a
-                        remarkable sense of responsibility. His confidence
-                        never exists merely for himself; his strength is
-                        consistently directed toward protecting others.
+                        Cheerful and straightforward, Rengoku possesses
+                        a remarkable sense of responsibility. His strength
+                        is consistently directed toward protecting others.
 
                     </p>
 
@@ -1204,9 +1165,9 @@
     </section>
 
 
-    <!-- =========================================================
+    <!-- =========================
          CHARACTER
-    ========================================================== -->
+    ========================== -->
 
     <section id="character" class="character">
 
@@ -1221,8 +1182,8 @@
                 <div class="character-image">
 
                     <img
-                        src="images/rengoku-determined.png"
-                        alt="Rengoku standing with determination"
+                        src="rengoku-determined.png"
+                        alt="Rengoku surrounded by flames"
                         loading="lazy"
                     >
 
@@ -1231,10 +1192,8 @@
                 <div class="character-content">
 
                     <h3>
-
                         Confidence
                         <span>without hesitation.</span>
-
                     </h3>
 
                     <p>
@@ -1246,17 +1205,16 @@
 
                     <p>
 
-                        His confidence is not presented as arrogance.
-                        It comes from knowing what he believes his duty to be
-                        and refusing to abandon it.
+                        His confidence is not simply arrogance. It comes
+                        from knowing what he believes his duty to be and
+                        refusing to abandon it.
 
                     </p>
 
                     <p>
 
-                        That is what makes the Flame Hashira so compelling:
-                        the fire surrounding him reflects the fire of his
-                        conviction.
+                        The fire surrounding him becomes a reflection of
+                        the conviction burning within him.
 
                     </p>
 
@@ -1269,9 +1227,9 @@
     </section>
 
 
-    <!-- =========================================================
+    <!-- =========================
          PHILOSOPHY
-    ========================================================== -->
+    ========================== -->
 
     <section id="philosophy" class="philosophy">
 
@@ -1282,23 +1240,17 @@
             </div>
 
             <h2 class="philosophy-title">
-
                 Set your heart
-
-                <span>
-                    ablaze.
-                </span>
-
+                <span>ablaze.</span>
             </h2>
 
             <div class="divider"></div>
 
             <p class="philosophy-text">
 
-                Rengoku's philosophy is built around courage, responsibility
-                and continuing forward even when circumstances become
-                difficult. His optimism is not weakness; it is the attitude
-                of someone who has decided what he stands for.
+                Rengoku's philosophy is built around courage,
+                responsibility and continuing forward even when
+                circumstances become difficult.
 
             </p>
 
@@ -1307,9 +1259,9 @@
     </section>
 
 
-    <!-- =========================================================
+    <!-- =========================
          THREE MOMENTS
-    ========================================================== -->
+    ========================== -->
 
     <section id="moments" class="moments">
 
@@ -1331,9 +1283,9 @@
 
                 <p class="section-text">
 
-                    These moments show why Rengoku works so well as a character:
-                    the pose and expression communicate something about the
-                    person behind the title of Flame Hashira.
+                    Rengoku's poses and expressions communicate different
+                    sides of his personality: resilience, leadership and
+                    absolute determination.
 
                 </p>
 
@@ -1343,15 +1295,13 @@
             <div class="moments-grid">
 
 
-                <!-- =================================================
-                     MOMENT 1
-                ================================================== -->
+                <!-- RESILIENCE -->
 
                 <article class="moment">
 
                     <img
-                        src="images/rengoku-resilience.png"
-                        alt="Rengoku in a determined battle stance"
+                        src="rengoku-resilience.png"
+                        alt="Rengoku in a determined stance"
                         loading="lazy"
                     >
 
@@ -1367,9 +1317,9 @@
 
                         <p>
 
-                            His lowered stance and focused expression suggest
-                            resilience rather than retreat. Even under pressure,
-                            his attention remains fixed on the task before him.
+                            His stance communicates resilience rather than
+                            retreat. Even under pressure, his attention
+                            remains fixed on the task before him.
 
                         </p>
 
@@ -1378,14 +1328,12 @@
                 </article>
 
 
-                <!-- =================================================
-                     MOMENT 2
-                ================================================== -->
+                <!-- LEADERSHIP -->
 
                 <article class="moment">
 
                     <img
-                        src="images/rengoku-leader.png"
+                        src="rengoku-leader.png"
                         alt="Rengoku reaching forward"
                         loading="lazy"
                     >
@@ -1402,9 +1350,9 @@
 
                         <p>
 
-                            The extended hand gives this image a different
-                            feeling. It communicates movement, confidence and
-                            the instinct to bring others forward with him.
+                            The extended hand gives this moment a different
+                            feeling. It communicates movement, confidence
+                            and the instinct to bring others forward.
 
                         </p>
 
@@ -1413,14 +1361,12 @@
                 </article>
 
 
-                <!-- =================================================
-                     MOMENT 3
-                ================================================== -->
+                <!-- DETERMINATION -->
 
                 <article class="moment">
 
                     <img
-                        src="images/rengoku-determined.png"
+                        src="rengoku-determined.png"
                         alt="Rengoku surrounded by flame"
                         loading="lazy"
                     >
@@ -1437,10 +1383,8 @@
 
                         <p>
 
-                            With his expression focused and his posture ready,
-                            Rengoku appears completely committed to moving
-                            forward. The flames become an extension of that
-                            determination.
+                            His focused expression and ready posture suggest
+                            someone completely committed to moving forward.
 
                         </p>
 
@@ -1455,9 +1399,9 @@
     </section>
 
 
-    <!-- =========================================================
+    <!-- =========================
          MUGEN TRAIN
-    ========================================================== -->
+    ========================== -->
 
     <section id="mugen" class="mugen">
 
@@ -1482,36 +1426,31 @@
                 <div class="mugen-content">
 
                     <h3>
-
                         The mission that
                         revealed his character.
-
                     </h3>
 
                     <p>
 
-                        After more than forty people were reported missing
-                        aboard the Mugen Train, Rengoku was sent to investigate.
-                        Tanjiro, Nezuko, Zenitsu and Inosuke would join him
-                        on the mission.
+                        Rengoku was assigned to investigate the disappearances
+                        aboard the Mugen Train. Tanjiro, Nezuko, Zenitsu and
+                        Inosuke would join him on the mission.
 
                     </p>
 
                     <p>
 
-                        The Mugen Train story places Rengoku in a position
-                        where his strength is only part of the story. His
-                        decisions, his responsibility toward others and his
-                        ability to inspire the people around him become just
-                        as important.
+                        The story demonstrates that Rengoku's strength is only
+                        part of what makes him remarkable. His responsibility,
+                        courage and ability to inspire others become equally
+                        important.
 
                     </p>
 
                     <p>
 
-                        That is ultimately why his presence leaves such a
-                        strong impression: he doesn't simply fight in front
-                        of others. He gives them something to carry forward.
+                        His presence leaves something behind: an example for
+                        others to carry forward.
 
                     </p>
 
@@ -1524,9 +1463,9 @@
     </section>
 
 
-    <!-- =========================================================
-         HEROIC IMAGE FEATURE
-    ========================================================== -->
+    <!-- =========================
+         HERO FEATURE
+    ========================== -->
 
     <section class="hero-feature">
 
@@ -1541,24 +1480,22 @@
                     </div>
 
                     <h3>
-
                         A presence
                         <span>impossible to ignore.</span>
-
                     </h3>
 
                     <p>
 
-                        The first image captures the version of Rengoku that
-                        defines his visual identity: a commanding expression,
-                        intense flames and an unmistakable sense of confidence.
+                        The heroic image captures the visual identity that
+                        makes Rengoku immediately recognizable: confidence,
+                        intensity and an unmistakable sense of authority.
 
                     </p>
 
                     <p>
 
-                        It is heroic without needing to exaggerate him.
-                        His expression already does the work.
+                        He does not need exaggerated praise.
+                        His presence already speaks for itself.
 
                     </p>
 
@@ -1567,7 +1504,7 @@
                 <div class="character-image">
 
                     <img
-                        src="images/rengoku-hero.png"
+                        src="rengoku-hero.png"
                         alt="Heroic portrait of Kyojuro Rengoku"
                         loading="lazy"
                     >
@@ -1581,9 +1518,9 @@
     </section>
 
 
-    <!-- =========================================================
+    <!-- =========================
          LEGACY
-    ========================================================== -->
+    ========================== -->
 
     <section class="legacy">
 
@@ -1604,9 +1541,9 @@
 
                 <p class="legacy-text">
 
-                    Rengoku's influence comes from the example he leaves behind.
-                    His courage and conviction become something that the people
-                    around him can remember and carry forward.
+                    Rengoku's influence comes from the example he leaves
+                    behind. His courage and conviction become something
+                    that the people around him can remember and carry forward.
 
                 </p>
 
@@ -1617,9 +1554,9 @@
     </section>
 
 
-    <!-- =========================================================
+    <!-- =========================
          FINAL
-    ========================================================== -->
+    ========================== -->
 
     <section class="final">
 
@@ -1630,13 +1567,8 @@
             </div>
 
             <h2>
-
                 Kyojuro
-
-                <span>
-                    Rengoku
-                </span>
-
+                <span>Rengoku</span>
             </h2>
 
             <p>
@@ -1648,9 +1580,9 @@
     </section>
 
 
-    <!-- =========================================================
+    <!-- =========================
          FOOTER
-    ========================================================== -->
+    ========================== -->
 
     <footer>
 
@@ -1665,16 +1597,15 @@
     </footer>
 
 
-    <!-- =========================================================
+    <!-- =========================
          JAVASCRIPT
-         LIVE FLAMES + EMBERS + SCROLL ANIMATION
-    ========================================================== -->
+    ========================== -->
 
     <script>
 
-        /* =========================================================
-           CANVAS FIRE
-        ========================================================= */
+        /* =========================
+           LIVE FIRE PARTICLES
+        ========================= */
 
         const canvas =
             document.getElementById("fireCanvas");
@@ -1699,7 +1630,6 @@
                 window.innerHeight;
 
             createParticles();
-
         }
 
 
@@ -1708,10 +1638,6 @@
             resizeCanvas
         );
 
-
-        /* =========================================================
-           PARTICLE CREATION
-        ========================================================= */
 
         function createParticle() {
 
@@ -1738,9 +1664,7 @@
 
                 life:
                     Math.random() * Math.PI * 2
-
             };
-
         }
 
 
@@ -1769,18 +1693,12 @@
                 particles.push(
                     particle
                 );
-
             }
-
         }
 
 
         resizeCanvas();
 
-
-        /* =========================================================
-           DRAW PARTICLE
-        ========================================================== */
 
         function drawParticle(particle) {
 
@@ -1840,13 +1758,8 @@
                 gradient;
 
             ctx.fill();
-
         }
 
-
-        /* =========================================================
-           ANIMATE FIRE
-        ========================================================== */
 
         function animateFire() {
 
@@ -1891,7 +1804,6 @@
 
                         particle.y =
                             height + 30;
-
                     }
 
 
@@ -1906,16 +1818,15 @@
             requestAnimationFrame(
                 animateFire
             );
-
         }
 
 
         animateFire();
 
 
-        /* =========================================================
+        /* =========================
            SCROLL REVEAL
-        ========================================================== */
+        ========================= */
 
         const revealElements =
             document.querySelectorAll(
@@ -1925,7 +1836,6 @@
 
         const observer =
             new IntersectionObserver(
-
                 entries => {
 
                     entries.forEach(
@@ -1945,11 +1855,9 @@
                     );
 
                 },
-
                 {
                     threshold: 0.12
                 }
-
             );
 
 
@@ -1964,9 +1872,9 @@
         );
 
 
-        /* =========================================================
-           MOUSE PARALLAX ON HERO
-        ========================================================== */
+        /* =========================
+           HERO PARALLAX
+        ========================= */
 
         const heroImage =
             document.querySelector(
@@ -2001,8 +1909,8 @@
 
                 heroImage.style.transform =
                     `translate(
-                        ${x * 12}px,
-                        ${y * 8}px
+                        ${x * 10}px,
+                        ${y * 7}px
                     )`;
 
             }
