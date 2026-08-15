@@ -36,19 +36,24 @@
             font-family: var(--font-body);
             overflow-x: hidden;
             line-height: 1.7;
-            transition: background-color 0.3s ease;
         }
 
-        /* Overdrive Violent Shake & Pulse */
-        body.ignited {
-            background-color: #1a0200;
-            animation: tremor 0.15s infinite alternate;
+        /* 2-Second Temporary Screen Shake Animation */
+        .shake-active {
+            animation: briefShake 2s ease-in-out;
         }
 
-        @keyframes tremor {
-            0% { transform: translate(1px, 1px) rotate(0deg); }
-            50% { transform: translate(-1px, -2px) rotate(-0.5deg); }
-            100% { transform: translate(-2px, 1px) rotate(0.5deg); }
+        @keyframes briefShake {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            10% { transform: translate(-4px, 3px) rotate(-0.5deg); }
+            20% { transform: translate(4px, -3px) rotate(0.5deg); }
+            30% { transform: translate(-4px, -2px) rotate(-0.5deg); }
+            40% { transform: translate(3px, 3px) rotate(0.5deg); }
+            50% { transform: translate(-2px, -1px) rotate(0deg); }
+            60% { transform: translate(2px, 2px) rotate(0.5deg); }
+            70% { transform: translate(-1px, -2px) rotate(-0.5deg); }
+            80% { transform: translate(1px, 1px) rotate(0deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
         }
 
         /* Canvas Particle Layer */
@@ -250,7 +255,7 @@
             font-size: 1rem;
         }
 
-        /* The Hashira Stances Gallery */
+        /* Gallery */
         .gallery-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -313,7 +318,7 @@
             font-size: 0.9rem;
         }
 
-        /* Interactive Breathing Form Showcase */
+        /* Forms */
         .forms-wrapper {
             display: grid;
             grid-template-columns: 320px 1fr;
@@ -387,7 +392,7 @@
             margin-bottom: 25px;
         }
 
-        /* Quotes & Monologue Carousel */
+        /* Banner */
         .quote-banner {
             text-align: center;
             background: radial-gradient(circle at center, rgba(255, 85, 0, 0.25) 0%, transparent 70%);
@@ -434,7 +439,6 @@
             color: #000;
         }
 
-        /* Footer */
         footer {
             padding: 40px 6%;
             text-align: center;
@@ -468,10 +472,10 @@
 </head>
 <body>
 
-    <!-- Rengoku Monologue Audio Track -->
-    <audio id="rengokuAudio" src="rengoku-quote.mp3" preload="auto"></audio>
+    <!-- Audio element pointing directly to local repository root -->
+    <audio id="rengokuAudio" src="Voicy_Rengoku.mp3" preload="auto"></audio>
 
-    <!-- Particle Flame Background -->
+    <!-- Canvas for Particle Fire Effects -->
     <canvas id="fireCanvas"></canvas>
 
     <!-- Navigation -->
@@ -508,7 +512,7 @@
         </div>
     </section>
 
-    <!-- Section 1: Mother's Teaching & Conviction -->
+    <!-- Section 1 -->
     <section id="teachings">
         <div class="section-header">
             <div class="section-tag">01 — Origin & Morality</div>
@@ -525,16 +529,16 @@
                     Kyojuro's code of honor was forged by the words of his late mother, Ruka Rengoku. She asked him why he was blessed with strength greater than average humans. Before he could answer, she imparted the truth that guided his entire existence:
                 </p>
                 <p>
-                    <em>"It is a blessing to be born with greater strength. Those who are born strong must use that strength for the sake of the world, for the sake of people. Using strength granted by heaven to hurt others or indulge oneself is unforgivable."</em>
+                    <em>"It is a blessing to be born with greater strength. Those who are born strong must use that strength for the sake of the world, for the sake of people."</em>
                 </p>
                 <p>
-                    Kyojuro embraced this charge without hesitation. His bright, wide-eyed gaze and cheerful demeanor were not a mask, but the genuine radiance of a warrior who possessed zero doubt regarding his life's purpose.
+                    Kyojuro embraced this charge without hesitation. His bright, wide-eyed gaze and cheerful demeanor were the genuine radiance of a warrior who possessed zero doubt regarding his life's purpose.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Section 2: Hashira Stances Gallery -->
+    <!-- Section 2 -->
     <section id="stances">
         <div class="section-header">
             <div class="section-tag">02 — Dual Aspects</div>
@@ -542,7 +546,6 @@
         </div>
 
         <div class="gallery-grid">
-            <!-- Card 1: Resilience -->
             <div class="gallery-card">
                 <div class="gallery-img-container">
                     <img src="rengoku-resilience.png" alt="Rengoku Resilience Stance">
@@ -550,13 +553,12 @@
                 <div class="gallery-info">
                     <h4>Unwavering Resilience</h4>
                     <p>
-                        Whether standing against the nightmare constructs of Enmu or locking blades with Upper Rank Three Akaza, Kyojuro never took a single backward step. His stance reflects an impenetrable defense driven by unbreakable resolve.
+                        Whether standing against the nightmare constructs of Enmu or locking blades with Upper Rank Three Akaza, Kyojuro never took a single backward step.
                     </p>
                     <div class="quote-tag">"I will fulfill my duty! I won't allow anyone here to die!"</div>
                 </div>
             </div>
 
-            <!-- Card 2: Leadership -->
             <div class="gallery-card">
                 <div class="gallery-img-container">
                     <img src="rengoku-leader.png" alt="Rengoku Leadership Stance">
@@ -564,7 +566,7 @@
                 <div class="gallery-info">
                     <h4>Guiding Light to Juniors</h4>
                     <p>
-                        To Tanjiro, Zenitsu, and Inosuke, Kyojuro was the ideal senior warrior. He readily agreed to make them his Tsuguko (successors), extending his hand to guide the next generation toward becoming pillars of humanity.
+                        To Tanjiro, Zenitsu, and Inosuke, Kyojuro was the ideal senior warrior, extending his hand to guide the next generation.
                     </p>
                     <div class="quote-tag">"Stand tall and be proud. No matter how weak or unworthy you feel, burn your heart!"</div>
                 </div>
@@ -572,7 +574,7 @@
         </div>
     </section>
 
-    <!-- Section 3: Interactive Flame Breathing Arsenal -->
+    <!-- Section 3 -->
     <section id="forms">
         <div class="section-header">
             <div class="section-tag">03 — Combat Techniques</div>
@@ -600,7 +602,7 @@
         </div>
     </section>
 
-    <!-- Section 4: Set Your Heart Ablaze Banner -->
+    <!-- Section 4 -->
     <section class="quote-banner" id="ablaze">
         <div class="quote-kanji">心を燃やせ</div>
         <div class="quote-main" id="dynamicQuote">
@@ -609,29 +611,23 @@
         <button class="btn-ignite" id="igniteBtn">Ignite Flame Aura</button>
     </section>
 
-    <!-- Footer -->
     <footer>
         KY O J U R O &nbsp; R E N G O K U &nbsp; — &nbsp; T R I B U T E &nbsp; P A G E
     </footer>
 
-    <!-- Interactive JavaScript -->
     <script>
-        // Audio Setup & Autoplay Handling
         const audio = document.getElementById('rengokuAudio');
 
         function playAudio() {
             if (audio.paused) {
-                audio.play().catch(err => {
-                    console.log('Autoplay blocked waiting for user click.');
-                });
+                audio.play().catch(() => {});
             }
         }
 
-        // Attempt automatic playback
-        window.addEventListener('load', playAudio);
+        // Trigger playback on initial click anywhere to satisfy browser autoplay requirements
         document.addEventListener('click', playAudio, { once: true });
 
-        // Particle Canvas Engine
+        // Canvas Setup
         const canvas = document.getElementById('fireCanvas');
         const ctx = canvas.getContext('2d');
 
@@ -642,28 +638,30 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        let particleCount = 90;
-        let auraActive = false;
+        let particleCount = 80;
+        let jetMode = false;
 
         class FlameParticle {
             constructor() {
                 this.reset();
             }
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = canvas.height + Math.random() * 30;
 
-                if (auraActive) {
-                    // Aggressive High-Speed Sky-Reaching Flames
-                    this.size = Math.random() * 7 + 2;
-                    this.speedY = Math.random() * 12 + 8; // High upward velocity
-                    this.speedX = (Math.random() - 0.5) * 4.5;
-                    this.opacity = Math.random() * 0.9 + 0.3;
-                    const colors = ['#ffffff', '#fff2a3', '#ffb700', '#ff5500', '#e62200'];
-                    this.color = colors[Math.floor(Math.random() * colors.length)];
+            reset() {
+                if (jetMode) {
+                    // Flame Jet stream firing high up from bottom-center
+                    this.x = canvas.width / 2 + (Math.random() - 0.5) * 120;
+                    this.y = canvas.height + 10;
+                    this.size = Math.random() * 8 + 3;
+                    this.speedY = Math.random() * 22 + 14; // High upward speed
+                    this.speedX = (Math.random() - 0.5) * 6; // Narrow upward stream
+                    this.opacity = Math.random() * 0.9 + 0.4;
+                    const jetColors = ['#ffffff', '#fff5b3', '#ffcc00', '#ff5500', '#e62200'];
+                    this.color = jetColors[Math.floor(Math.random() * jetColors.length)];
                 } else {
-                    // Normal Ambient Embers
-                    this.size = Math.random() * 3.5 + 1;
+                    // Ambient embers
+                    this.x = Math.random() * canvas.width;
+                    this.y = canvas.height + Math.random() * 20;
+                    this.size = Math.random() * 3 + 1;
                     this.speedY = Math.random() * 2.2 + 1;
                     this.speedX = (Math.random() - 0.5) * 1.2;
                     this.opacity = Math.random() * 0.7 + 0.3;
@@ -671,20 +669,23 @@
                     this.color = colors[Math.floor(Math.random() * colors.length)];
                 }
             }
+
             update() {
                 this.y -= this.speedY;
-                this.x += this.speedX + Math.sin(this.y * 0.02) * (auraActive ? 2 : 0.5);
-                this.opacity -= auraActive ? 0.005 : 0.003;
-                if (this.opacity <= 0 || this.y < -20) {
+                this.x += this.speedX;
+                this.opacity -= jetMode ? 0.008 : 0.003;
+
+                if (this.opacity <= 0 || this.y < -50) {
                     this.reset();
                 }
             }
+
             draw() {
                 ctx.globalAlpha = this.opacity;
                 ctx.fillStyle = this.color;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.shadowBlur = auraActive ? 25 : 10;
+                ctx.shadowBlur = jetMode ? 20 : 8;
                 ctx.shadowColor = this.color;
                 ctx.fill();
             }
@@ -695,16 +696,6 @@
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Dynamic bottom thermal gradient when ignited
-            if (auraActive) {
-                let grad = ctx.createRadialGradient(canvas.width / 2, canvas.height, 50, canvas.width / 2, canvas.height, canvas.height * 0.9);
-                grad.addColorStop(0, 'rgba(255, 85, 0, 0.45)');
-                grad.addColorStop(0.5, 'rgba(230, 34, 0, 0.25)');
-                grad.addColorStop(1, 'transparent');
-                ctx.fillStyle = grad;
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-            }
-
             particles.forEach(p => {
                 p.update();
                 p.draw();
@@ -713,7 +704,7 @@
         }
         animate();
 
-        // Interactive Flame Breathing Forms Data
+        // Forms Data
         const formsData = [
             {
                 num: "First Form — 壱ノ型",
@@ -725,7 +716,7 @@
                 num: "Second Form — 弐ノ型",
                 title: "Rising Scorching Sun",
                 jp: "昇り炎天 (Nobori En Ten)",
-                desc: "An ascending, circular sword stroke where the blade sweeps upward in a arc of intense flames, effective for parrying incoming attacks from above."
+                desc: "An ascending, circular sword stroke where the blade sweeps upward in an arc of intense flames, effective for parrying incoming attacks."
             },
             {
                 num: "Third Form — 参ノ型",
@@ -737,19 +728,19 @@
                 num: "Fourth Form — 肆ノ型",
                 title: "Blooming Flame Wave",
                 jp: "盛炎のうねり (Seien no Uneri)",
-                desc: "The user spins their sword in a wide circular pattern, creating a impenetrable wall of flames that deflects all surrounding attacks."
+                desc: "The user spins their sword in a wide circular pattern, creating an impenetrable wall of flames that deflects surrounding attacks."
             },
             {
                 num: "Fifth Form — 伍ノ型",
                 title: "Flame Tiger",
                 jp: "炎虎 (Enko)",
-                desc: "A series of high-speed sword slashes that materialize into the shape of a flaming tiger leaping forward to bite into the target."
+                desc: "A series of high-speed sword slashes that materialize into the shape of a flaming tiger leaping forward to strike."
             },
             {
                 num: "Ninth Form — 玖ノ型",
                 title: "Rengoku (Esoteric Art)",
                 jp: "煉獄 (Rengoku)",
-                desc: "The supreme technique of Flame Breathing. A devastating charge strike initiated from a high stance that carves deep burn marks into the earth and manifests a roaring flame dragon."
+                desc: "The supreme technique of Flame Breathing. A devastating charge strike initiated from a high stance that carves deep burn marks into the earth."
             }
         ];
 
@@ -766,31 +757,34 @@
             document.getElementById('formDesc').innerText = data.desc;
         }
 
-        // Ignite Aura Overdrive Toggle
+        // Ignite Button Logic
         const igniteBtn = document.getElementById('igniteBtn');
 
         igniteBtn.addEventListener('click', () => {
-            auraActive = !auraActive;
-            playAudio(); // Ensures audio plays on click
+            playAudio();
+            jetMode = !jetMode;
 
-            if (auraActive) {
-                particleCount = 380; // Massive surge of flame particles
+            // Trigger brief 2-second screen shake
+            document.body.classList.remove('shake-active');
+            void document.body.offsetWidth; // Force reflow
+            document.body.classList.add('shake-active');
+
+            setTimeout(() => {
+                document.body.classList.remove('shake-active');
+            }, 2000);
+
+            if (jetMode) {
+                particleCount = 300;
                 particles = Array.from({ length: particleCount }, () => new FlameParticle());
-                document.body.classList.add('ignited');
-                
-                igniteBtn.innerText = "HEART ABLAZE!";
+                igniteBtn.innerText = "SET YOUR HEART ABLAZE!";
                 igniteBtn.style.background = "linear-gradient(135deg, #ffffff, #ffb700, #ff5500)";
                 igniteBtn.style.color = "#000";
-                igniteBtn.style.boxShadow = "0 0 60px #ffb700";
             } else {
-                particleCount = 90;
+                particleCount = 80;
                 particles = Array.from({ length: particleCount }, () => new FlameParticle());
-                document.body.classList.remove('ignited');
-
                 igniteBtn.innerText = "Ignite Flame Aura";
                 igniteBtn.style.background = "";
                 igniteBtn.style.color = "";
-                igniteBtn.style.boxShadow = "";
             }
         });
     </script>
